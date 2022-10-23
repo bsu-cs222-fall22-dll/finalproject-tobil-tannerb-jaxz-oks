@@ -43,7 +43,7 @@ public class DataFetcherTest {
     }
 
     @Test
-    public void boxCountTesttwo() throws IOException, ParseException{
+    public void boxCountTestTwo() throws IOException, ParseException{
         DataFetcher dataFetcher = new DataFetcher();
         String memeIndex = dataFetcher.getBoxCount(3);
         Assertions.assertEquals("5",memeIndex);
@@ -54,4 +54,5 @@ public class DataFetcherTest {
         String id = dataFetcher.getID(0);
         Assertions.assertEquals("181913649",id);
     }
+
 }

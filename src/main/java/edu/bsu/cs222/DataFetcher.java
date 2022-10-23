@@ -27,6 +27,22 @@ public class DataFetcher {
         return memeIndex;
     }
 
+    public String getBoxCount(int memeIndex) throws IOException, ParseException {
+        JSONStorage jsonStorage = new JSONStorage();
+        String jsonString = jsonStorage.getJSONString();
+        JSONArray jsonArray = JsonPath.read(jsonString, "$..box_count");
+        String boxCount = null;
+        for(int i = 0; i < jsonArray.size(); i++){
+            if(i == memeIndex){
+                boxCount = jsonArray.get(i).toString();
+                break;
+            } else {
+                boxCount = "Meme is out of range";
+            }
+        }
 
+        return boxCount;
+
+    }
 
 }

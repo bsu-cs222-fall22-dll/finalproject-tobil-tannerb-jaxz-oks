@@ -61,6 +61,22 @@ public class DataFetcher {
         return id;
 
     }
+    public String getURL(int index)throws IOException, ParseException{
+        JSONStorage jsonStorage = new JSONStorage();
+        String jsonString = jsonStorage.getJSONString();
+        JSONArray jsonArray = JsonPath.read(jsonString, "$..url");
+        String url = null;
+        for (int i = 0; i < jsonArray.size(); i++){
+            if(i == index){
+                url = jsonArray.get(i).toString();
+                break;
+            } else {
+                url = "Meme is out of range";
+            }
+
+        }
+        return url;
+    }
 
 
 }

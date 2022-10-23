@@ -34,4 +34,24 @@ public class DataFetcherTest {
         String memeIndex = dataFetcher.getTemplateByName("CS222 Meme");
         Assertions.assertEquals("Meme Does Not Exist", memeIndex);
     }
+
+    @Test
+    public void boxCountTest() throws IOException, ParseException{
+        DataFetcher dataFetcher = new DataFetcher();
+        String memeIndex = dataFetcher.getBoxCount(0);
+        Assertions.assertEquals("2",memeIndex);
+    }
+
+    @Test
+    public void boxCountTesttwo() throws IOException, ParseException{
+        DataFetcher dataFetcher = new DataFetcher();
+        String memeIndex = dataFetcher.getBoxCount(3);
+        Assertions.assertEquals("5",memeIndex);
+    }
+    @Test
+    public void idTest() throws IOException,ParseException{
+        DataFetcher dataFetcher = new DataFetcher();
+        String id = dataFetcher.getID(0);
+        Assertions.assertEquals("181913649",id);
+    }
 }

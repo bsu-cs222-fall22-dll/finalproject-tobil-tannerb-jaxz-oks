@@ -44,5 +44,23 @@ public class DataFetcher {
         return boxCount;
 
     }
+    public String getID(int memeIndex) throws IOException, ParseException {
+        JSONStorage jsonStorage = new JSONStorage();
+        String jsonString = jsonStorage.getJSONString();
+        JSONArray jsonArray = JsonPath.read(jsonString, "$..id");
+        String id = null;
+        for(int i = 0; i < jsonArray.size(); i++){
+            if(i == memeIndex){
+                id = jsonArray.get(i).toString();
+                break;
+            } else {
+                id = "Meme is out of range";
+            }
+        }
+
+        return id;
+
+    }
+
 
 }

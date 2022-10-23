@@ -72,5 +72,5 @@ public class DataFetcherTest {
         DataFetcher dataFetcher = new DataFetcher();
         String url = dataFetcher.getURL(102);
         Assertions.assertEquals("Meme is out of range", url);
-    }
+     }
 }

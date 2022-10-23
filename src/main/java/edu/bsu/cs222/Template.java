@@ -28,8 +28,8 @@ public class Template {
         return memeID;
     }
 
-    public String getUrl() {
-
+    public String getUrl() throws IOException, ParseException {
+        memeID = dataFetcher.getURL(getMemeIndex());
         return url;
     }
 

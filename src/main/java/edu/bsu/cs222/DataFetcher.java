@@ -14,7 +14,7 @@ public class DataFetcher {
         String jsonString = jsonStorage.getJSONString();
         JSONArray jsonArray = JsonPath.read(jsonString, "$..name");
         String memeIndex = "0";
-        System.out.println(name);
+        //System.out.println(name);
         for(int i = 0; i < jsonArray.size(); i++) {
             String testName = jsonArray.get(i).toString();
             if(name.equals(testName)){

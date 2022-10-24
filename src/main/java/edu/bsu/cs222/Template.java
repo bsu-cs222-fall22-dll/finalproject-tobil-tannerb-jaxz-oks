@@ -41,6 +41,6 @@ public class Template {
         } else {
             boxCount = Integer.parseInt(results);
         }
-;        return boxCount;
+        return boxCount;
     }
 }

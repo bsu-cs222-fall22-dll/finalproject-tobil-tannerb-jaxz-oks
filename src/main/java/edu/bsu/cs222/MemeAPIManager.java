@@ -26,7 +26,10 @@ public class MemeAPIManager {
         JSONArray jsonArray = JsonPath.read(jsonString, "$..box_count");
         String boxCount = null;
         for(int i = 0; i < jsonArray.size(); i++){
-            boxCount = jsonArray.get(i).toString();
+            if(i == memeIndex){
+                boxCount = jsonArray.get(i).toString();
+                break;
+            }
         }
 
         return boxCount;
@@ -37,7 +40,10 @@ public class MemeAPIManager {
         JSONArray jsonArray = JsonPath.read(jsonString, "$..id");
         String id = null;
         for(int i = 0; i < jsonArray.size(); i++){
-            id = jsonArray.get(i).toString();
+            if (i == memeIndex) {
+                id = jsonArray.get(i).toString();
+                break;
+            }
          }
 
         return id;
@@ -48,7 +54,10 @@ public class MemeAPIManager {
         JSONArray jsonArray = JsonPath.read(jsonString, "$..url");
         String url = null;
         for (int i = 0; i < jsonArray.size(); i++){
-            url = jsonArray.get(i).toString();
+            if(i == index) {
+                url = jsonArray.get(i).toString();
+                break;
+            }
         }
         return url;
     }
@@ -61,8 +70,6 @@ public class MemeAPIManager {
             if(i == index){
                 name = jsonArray.get(i).toString();
                 break;
-            } else {
-                name = "Meme does not exist";
             }
 
         }

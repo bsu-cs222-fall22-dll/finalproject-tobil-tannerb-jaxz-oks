@@ -18,7 +18,7 @@ public class DataFetcherTest {
     public void nameToIndexTestTwo() throws IOException, ParseException {
         DataFetcher dataFetcher = new DataFetcher();
         String memeIndex = dataFetcher.getTemplateByName("One Does Not Simply");
-        Assertions.assertEquals("15", memeIndex);
+        Assertions.assertEquals("16", memeIndex);
     }
 
     @Test
@@ -55,7 +55,7 @@ public class DataFetcherTest {
         Assertions.assertEquals("181913649",id);
     }
     @Test
-    public void idTesttwo() throws IOException,ParseException{
+    public void idTestTwo() throws IOException,ParseException{
         DataFetcher dataFetcher = new DataFetcher();
         String id = dataFetcher.getID(101);
         Assertions.assertEquals("Meme is out of range",id);
@@ -68,7 +68,7 @@ public class DataFetcherTest {
         Assertions.assertEquals("https://i.imgflip.com/30b1gx.jpg", url);
     }
     @Test
-    public void urlTesttwo() throws IOException,ParseException{
+    public void urlTestTwo() throws IOException,ParseException{
         DataFetcher dataFetcher = new DataFetcher();
         String url = dataFetcher.getURL(102);
         Assertions.assertEquals("Meme is out of range", url);

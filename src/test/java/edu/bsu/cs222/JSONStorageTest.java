@@ -14,7 +14,6 @@ public class JSONStorageTest {
     public void getTop20MemeListTest() throws IOException, ParseException {
         JSONStorage jsonStorage = new JSONStorage();
         ArrayList jsonArray = jsonStorage.getMemeList();
-        System.out.println(jsonArray);
         Assertions.assertEquals(20, jsonArray.size());
     }
 }

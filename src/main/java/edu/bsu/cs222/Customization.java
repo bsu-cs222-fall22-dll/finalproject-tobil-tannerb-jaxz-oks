@@ -49,7 +49,7 @@ public class Customization {
         HttpEntity entity = response.getEntity();
         String url = decode(entity);
         EntityUtils.consume(entity);
-        return (url);
+        return url;
     }
 }
 

@@ -15,11 +15,15 @@ public class UI {
         templateFormatter.formatTop20();
         System.out.println("Please enter the number of the meme you wish to select: ");
         int index = Integer.parseInt(scanner.nextLine());
+        if (index > 20 || index == 0){
+            System.out.println("number is not in the range");
+
+        }else{
         //scanner.close();
         String memeName = memeAPIManager.getName(index - 1);
 
         String memeUrl = customizedMeme.customizeMeme(memeName);
 
         System.out.println(memeUrl);
-    }
+    }}
 }

@@ -14,10 +14,9 @@ public class CustomizationTest {
     @Test
     public void customMemeTest1() throws IOException, ParseException {
         Customization customization = new Customization();
-        ArrayList<String> text = new ArrayList<>();
-        text.add("making memes with mematic");
-        text.add("writing your own code to generate custom memes");
-        String url = customization.customizeMeme("Drake Hotline Bling", text);
+        customization.addText("making memes with mematic");
+        customization.addText("writing your own code to generate custom memes");
+        String url = customization.customizeMeme("Drake Hotline Bling");
         System.out.println(url);
     }
 

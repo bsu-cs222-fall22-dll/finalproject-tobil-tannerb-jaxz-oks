@@ -72,6 +72,22 @@ public class MemeAPIManager {
         }
         return url;
     }
+    //Only used for Template Formatter
+    public String getName(int index)throws IOException, ParseException{
+        String jsonString = jsonParser.getJSONString();
+        JSONArray jsonArray = JsonPath.read(jsonString, "$..name");
+        String name = null;
+        for (int i = 0; i < jsonArray.size(); i++){
+            if(i == index){
+                name = jsonArray.get(i).toString();
+                break;
+            } else {
+                name = "Meme does not exist";
+            }
+
+        }
+        return name;
+    }
 
 
 }

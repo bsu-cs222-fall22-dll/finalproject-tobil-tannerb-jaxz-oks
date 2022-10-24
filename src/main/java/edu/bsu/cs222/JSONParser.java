@@ -13,7 +13,7 @@ import org.apache.hc.core5.http.io.entity.EntityUtils;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class JSONStorage {
+public class JSONParser {
     public ArrayList getMemeList() throws IOException, ParseException {
         HttpClient httpClient = HttpClients.createDefault();
         HttpGet httpGet = new HttpGet("https://api.imgflip.com/get_memes");

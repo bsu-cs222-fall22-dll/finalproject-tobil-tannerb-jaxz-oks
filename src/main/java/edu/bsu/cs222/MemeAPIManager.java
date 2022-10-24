@@ -74,8 +74,7 @@ public class MemeAPIManager {
     }
     //Only used for Template Formatter
     public String getName(int index)throws IOException, ParseException{
-        JSONStorage jsonStorage = new JSONStorage();
-        String jsonString = jsonStorage.getJSONString();
+        String jsonString = jsonParser.getJSONString();
         JSONArray jsonArray = JsonPath.read(jsonString, "$..name");
         String name = null;
         for (int i = 0; i < jsonArray.size(); i++){

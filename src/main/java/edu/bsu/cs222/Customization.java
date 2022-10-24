@@ -33,6 +33,7 @@ public class Customization {
 
         memeID = template.getMemeID();
         memeBoxCount = template.getBoxCount();
+        System.out.println("You will have " + memeBoxCount + " text boxes to fill.");
         for(int i = 1; i <= memeBoxCount; i++){
             System.out.println("Please enter the text for text box " + i);
             String input = scanner.nextLine();

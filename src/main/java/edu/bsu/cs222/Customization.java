@@ -53,7 +53,6 @@ public class Customization {
         HttpPost httpPost = new HttpPost("https://api.imgflip.com/caption_image");
         httpPost.setEntity(new UrlEncodedFormEntity(parameters));
         CloseableHttpResponse response = (CloseableHttpResponse) httpClient.execute(httpPost);
-        //System.out.println(response.getCode() + "     " + response.getReasonPhrase());
         HttpEntity entity = response.getEntity();
         String url = decodeJSON(entity);
         EntityUtils.consume(entity);
@@ -62,9 +61,7 @@ public class Customization {
 
     private String decodeJSON(HttpEntity encodedJSON) throws IOException, ParseException {
         String jsonString = EntityUtils.toString(encodedJSON);
-        System.out.println(jsonString);
         HashMap<String, String> jsonMap = JsonPath.read(jsonString, "$.data");
-        //System.out.println(jsonMap.get("page_url"));
         String url = jsonMap.get("url");
         return url;
     }

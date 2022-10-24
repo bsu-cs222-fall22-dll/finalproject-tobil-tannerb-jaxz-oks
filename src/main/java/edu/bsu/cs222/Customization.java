@@ -18,15 +18,15 @@ import java.util.HashMap;
 import java.util.List;
 
 public class Customization {
-    private String decode(HttpEntity encoded) throws IOException, ParseException {
-        String jsonString = EntityUtils.toString(encoded);
+    private String decodeJSON(HttpEntity encodedJSON) throws IOException, ParseException {
+        String jsonString = EntityUtils.toString(encodedJSON);
         System.out.println(jsonString);
         HashMap<String, String> jsonMap = JsonPath.read(jsonString, "$.data");
         //System.out.println(jsonMap.get("page_url"));
         String url = jsonMap.get("url");
         return url;
     }
-    public String customizeMeme(String memeName) throws IOException, ParseException {
+    public String customizeMeme(String memeName, ArrayList<String> memeText) throws IOException, ParseException {
         Template template = new Template(memeName);
         HttpClient httpClient = HttpClients.createDefault();
         HttpPost httpPost = new HttpPost("https://api.imgflip.com/caption_image");
@@ -39,7 +39,7 @@ public class Customization {
         parameters.add(new BasicNameValuePair("username", "edu.bsu.cs22.finalproject"));
         parameters.add(new BasicNameValuePair("password", "rZxJQmKsSht7eZk"));
         for(int i = 0; i < memeBoxCount; i++ ){
-            parameters.add(new BasicNameValuePair("boxes[" + i + "][text]", "making memes with mematic"));
+            parameters.add(new BasicNameValuePair("boxes[" + i + "][text]", memeText.get(i)));
         }
 
         httpPost.setEntity(new UrlEncodedFormEntity(parameters));
@@ -47,7 +47,7 @@ public class Customization {
         CloseableHttpResponse response = (CloseableHttpResponse) httpClient.execute(httpPost);
         //System.out.println(response.getCode() + "     " + response.getReasonPhrase());
         HttpEntity entity = response.getEntity();
-        String url = decode(entity);
+        String url = decodeJSON(entity);
         EntityUtils.consume(entity);
         return url;
     }

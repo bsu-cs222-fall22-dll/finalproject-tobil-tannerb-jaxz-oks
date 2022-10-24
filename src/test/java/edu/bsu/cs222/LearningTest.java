@@ -89,7 +89,7 @@ public class LearningTest {
         System.out.println(jsonString);
 
         JSONArray jsonArray = JsonPath.read(jsonString, "$.data.memes");
-        HashMap jsonMap = (HashMap) jsonArray.get(0);
+        @SuppressWarnings("rawtypes") HashMap jsonMap = (HashMap) jsonArray.get(0);
         System.out.println(jsonMap);
         System.out.println(jsonMap.get("url"));
 

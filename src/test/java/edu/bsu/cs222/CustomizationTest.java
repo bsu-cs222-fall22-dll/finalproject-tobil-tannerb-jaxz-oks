@@ -6,14 +6,19 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CustomizationTest {
     @Test
-    //Test will fail because the url changes everytime however they are the same meme so thats a win
     public void customMemeTest1() throws IOException, ParseException {
         Customization customization = new Customization();
-        String url = customization.customizeMeme("Drake Hotline Bling");
-        Assertions.assertEquals("https://i.imgflip.com/6xzrae.jpg", url);
+        ArrayList<String> text = new ArrayList<>();
+        text.add("making memes with mematic");
+        text.add("writing your own code to generate custom memes");
+        String url = customization.customizeMeme("Drake Hotline Bling", text);
+        System.out.println(url);
     }
 
 }

@@ -13,7 +13,7 @@ import org.apache.hc.core5.http.io.entity.EntityUtils;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class JSONStorage {
+public class JSONParser {
     public ArrayList getMemeList() throws IOException, ParseException {
         HttpClient httpClient = HttpClients.createDefault();
         HttpGet httpGet = new HttpGet("https://api.imgflip.com/get_memes");
@@ -25,7 +25,7 @@ public class JSONStorage {
         String jsonString = EntityUtils.toString(entity);
         //System.out.println(jsonString);
 
-        JSONArray jsonArray = JsonPath.read(jsonString, "$.data.memes");
+        JSONArray jsonArray = JsonPath.read(jsonString, "$..name");
         ArrayList<String> memeList = new ArrayList<>();
         for (int i = 0; i < 20; i++) {
             String meme = (jsonArray.get(i).toString());

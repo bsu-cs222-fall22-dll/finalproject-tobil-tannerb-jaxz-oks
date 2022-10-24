@@ -15,26 +15,26 @@ public class Template {
     public String url;
     public int boxCount;
     public int memeIndex;
-    public DataFetcher dataFetcher = new DataFetcher();
+    public MemeAPIManager memeAPIManager = new MemeAPIManager();
 
     public int getMemeIndex() throws IOException, ParseException {
-        dataFetcher.getTemplateByName(memeName);
+        memeAPIManager.getTemplateByName(memeName);
         return memeIndex;
     }
 
 
     public String getMemeID() throws IOException, ParseException {
-        memeID = dataFetcher.getID(getMemeIndex());
+        memeID = memeAPIManager.getID(getMemeIndex());
         return memeID;
     }
 
     public String getUrl() throws IOException, ParseException {
-        memeID = dataFetcher.getURL(getMemeIndex());
+        memeID = memeAPIManager.getURL(getMemeIndex());
         return url;
     }
 
     public int getBoxCount() throws IOException, ParseException {
-        String results = dataFetcher.getBoxCount(getMemeIndex());
+        String results = memeAPIManager.getBoxCount(getMemeIndex());
         if (results.equals("Meme is out of range")){
             //Need to figure this out
             results = "Meme is out of range";

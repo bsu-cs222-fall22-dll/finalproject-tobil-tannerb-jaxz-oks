@@ -24,7 +24,7 @@ public class Customization {
     private String password = "rZxJQmKsSht7eZk";
     private String memeID = "181913649";
     private int memeBoxCount;
-    private List<String> memeText = new ArrayList<>();;
+    private List<String> memeText = new ArrayList<>();
     private List<NameValuePair> parameters = new ArrayList<>();
     private Scanner scanner = new Scanner(System.in);
 
@@ -33,6 +33,13 @@ public class Customization {
 
         memeID = template.getMemeID();
         memeBoxCount = template.getBoxCount();
+        for(int i = 1; i <= memeBoxCount; i++){
+            System.out.println("Please enter the text for text box " + i);
+            String input = scanner.nextLine();
+            memeText.add(input);
+        }
+
+
 
         setParameters();
 
@@ -85,16 +92,6 @@ public class Customization {
 
     public List<NameValuePair> getParameters(){
         return parameters;
-    }
-
-
-    public void setMemeList(){
-        for(int i = 1; i <= memeBoxCount; i++){
-            System.out.println("Please enter the text for text box " + i);
-            String input = scanner.nextLine();
-            memeText.add(input);
-            }
-
     }
 }
 

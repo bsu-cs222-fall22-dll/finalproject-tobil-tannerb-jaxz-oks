@@ -15,6 +15,7 @@ public class UI {
         templateFormatter.formatTop20();
         System.out.println("Please enter the number of the meme you wish to select: ");
         int index = Integer.parseInt(scanner.nextLine());
+        //scanner.close();
         String memeName = memeAPIManager.getName(index - 1);
 
         String memeUrl = customizedMeme.customizeMeme(memeName);

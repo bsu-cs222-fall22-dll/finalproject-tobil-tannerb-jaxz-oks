@@ -32,7 +32,7 @@ public class JSONParser {
             memeList.add(meme);
         }
         //HashMap jsonMap = (HashMap) jsonArray.get(0);
-        System.out.println(memeList);
+        //System.out.println(memeList);
 
         EntityUtils.consume(entity);
 

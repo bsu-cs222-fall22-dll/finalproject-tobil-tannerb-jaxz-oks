@@ -10,11 +10,12 @@ public class TemplateFormatter {
         ArrayList list = new  JSONParser().getMemeList();
         MemeAPIManager data = new MemeAPIManager();
         for(int i = 0; i < list.size(); i++){
+            String order = String.valueOf(i+1);
             String name = data.getName(i);
             String box = data.getBoxCount(i);
-            String id = data.getID(i);
+            //String id = data.getID(i);
             String url = data.getURL(i);
-            System.out.printf("Name: %s BoxCount:%s Id:%s Url: %s\n", name,box,id,url);
+            System.out.printf("(%s) Name: %s BoxCount:%s Example: %s\n", order,name,box,url);
         }
     }
 }

@@ -25,7 +25,7 @@ public class JSONStorage {
         String jsonString = EntityUtils.toString(entity);
         //System.out.println(jsonString);
 
-        JSONArray jsonArray = JsonPath.read(jsonString, "$.data.memes");
+        JSONArray jsonArray = JsonPath.read(jsonString, "$..name");
         ArrayList<String> memeList = new ArrayList<>();
         for (int i = 0; i < 20; i++) {
             String meme = (jsonArray.get(i).toString());

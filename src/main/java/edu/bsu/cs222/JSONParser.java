@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class JSONParser {
-    public ArrayList getMemeList() throws IOException, ParseException {
+    public ArrayList<String> getMemeList() throws IOException, ParseException {
         HttpClient httpClient = HttpClients.createDefault();
         HttpGet httpGet = new HttpGet("https://api.imgflip.com/get_memes");
 

@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class TemplateFormatter {
     public void formatTop20() throws IOException, ParseException {
-        ArrayList list = new  JSONParser().getMemeList();
+        ArrayList<String> list = new  JSONParser().getMemeList();
         MemeAPIManager data = new MemeAPIManager();
         for(int i = 0; i < list.size(); i++){
             String order = String.valueOf(i+1);

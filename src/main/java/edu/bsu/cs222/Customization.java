@@ -18,6 +18,37 @@ import java.util.HashMap;
 import java.util.List;
 
 public class Customization {
+
+    private String username = "edu.bsu.cs22.finalproject";
+    private String password = "rZxJQmKsSht7eZk";
+    private String memeID = "181913649";
+    private int memeBoxCount = 2;
+    private List<String> memeText = new ArrayList<>();;
+    private List<NameValuePair> parameters = new ArrayList<>();
+
+    public String customizeMeme(String memeName) throws IOException, ParseException {
+        Template template = new Template(memeName);
+
+        memeID = template.getMemeID();
+        memeBoxCount = template.getBoxCount();
+
+        setParameters();
+
+        return getCustomMemeURL();
+    }
+
+    private String getCustomMemeURL() throws IOException, ParseException {
+        HttpClient httpClient = HttpClients.createDefault();
+        HttpPost httpPost = new HttpPost("https://api.imgflip.com/caption_image");
+        httpPost.setEntity(new UrlEncodedFormEntity(parameters));
+        CloseableHttpResponse response = (CloseableHttpResponse) httpClient.execute(httpPost);
+        //System.out.println(response.getCode() + "     " + response.getReasonPhrase());
+        HttpEntity entity = response.getEntity();
+        String url = decodeJSON(entity);
+        EntityUtils.consume(entity);
+        return url;
+    }
+
     private String decodeJSON(HttpEntity encodedJSON) throws IOException, ParseException {
         String jsonString = EntityUtils.toString(encodedJSON);
         System.out.println(jsonString);
@@ -26,30 +57,30 @@ public class Customization {
         String url = jsonMap.get("url");
         return url;
     }
-    public String customizeMeme(String memeName, ArrayList<String> memeText) throws IOException, ParseException {
-        Template template = new Template(memeName);
-        HttpClient httpClient = HttpClients.createDefault();
-        HttpPost httpPost = new HttpPost("https://api.imgflip.com/caption_image");
 
-        String memeID = template.getMemeID();
-        int memeBoxCount = template.getBoxCount();
+    public void setUsername(String user){
+        username = user;
+    }
 
-        List<NameValuePair> parameters = new ArrayList<>();
+    public void setPassword(String pass){
+        password = pass;
+    }
+
+    public void addText(String newText){
+        memeText.add(newText);
+    }
+
+    public void setParameters(){
         parameters.add(new BasicNameValuePair("template_id", memeID));
-        parameters.add(new BasicNameValuePair("username", "edu.bsu.cs22.finalproject"));
-        parameters.add(new BasicNameValuePair("password", "rZxJQmKsSht7eZk"));
+        parameters.add(new BasicNameValuePair("username", username));
+        parameters.add(new BasicNameValuePair("password", password));
         for(int i = 0; i < memeBoxCount; i++ ){
             parameters.add(new BasicNameValuePair("boxes[" + i + "][text]", memeText.get(i)));
         }
+    }
 
-        httpPost.setEntity(new UrlEncodedFormEntity(parameters));
-
-        CloseableHttpResponse response = (CloseableHttpResponse) httpClient.execute(httpPost);
-        //System.out.println(response.getCode() + "     " + response.getReasonPhrase());
-        HttpEntity entity = response.getEntity();
-        String url = decodeJSON(entity);
-        EntityUtils.consume(entity);
-        return url;
+    public List<NameValuePair> getParameters(){
+        return parameters;
     }
 }
 

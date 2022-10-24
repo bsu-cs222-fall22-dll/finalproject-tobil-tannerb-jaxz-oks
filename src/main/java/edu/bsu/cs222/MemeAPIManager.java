@@ -8,18 +8,19 @@ import java.io.IOException;
 
 public class MemeAPIManager {
     private JSONParser jsonParser = new JSONParser();
-    public String getTemplateByName(String name) throws IOException, ParseException {
+    public int getTemplateByName(String name) throws IOException, ParseException {
         String jsonString = jsonParser.getJSONString();
         JSONArray jsonArray = JsonPath.read(jsonString, "$..name");
-        String memeIndex = "0";
+        int memeIndex = 0;
+        String result = null;
         //System.out.println(name);
         for(int i = 0; i < jsonArray.size(); i++) {
             String testName = jsonArray.get(i).toString();
             if(name.equals(testName)){
-                memeIndex = Integer.toString(i);
+                memeIndex = (i);
                 break;
             } else {
-                memeIndex = "Meme Does Not Exist";
+                result = "Meme Does Not Exist";
             }
         }
         return memeIndex;

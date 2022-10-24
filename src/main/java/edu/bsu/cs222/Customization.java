@@ -16,15 +16,17 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Scanner;
 
 public class Customization {
 
     private String username = "edu.bsu.cs22.finalproject";
     private String password = "rZxJQmKsSht7eZk";
     private String memeID = "181913649";
-    private int memeBoxCount = 2;
+    private int memeBoxCount;
     private List<String> memeText = new ArrayList<>();;
     private List<NameValuePair> parameters = new ArrayList<>();
+    private Scanner scanner = new Scanner(System.in);
 
     public String customizeMeme(String memeName) throws IOException, ParseException {
         Template template = new Template(memeName);
@@ -34,7 +36,9 @@ public class Customization {
 
         setParameters();
 
-        return getCustomMemeURL();
+        String url = getCustomMemeURL();
+
+        return url;
     }
 
     private String getCustomMemeURL() throws IOException, ParseException {
@@ -81,6 +85,16 @@ public class Customization {
 
     public List<NameValuePair> getParameters(){
         return parameters;
+    }
+
+
+    public void setMemeList(){
+        for(int i = 1; i <= memeBoxCount; i++){
+            System.out.println("Please enter the text for text box " + i);
+            String input = scanner.nextLine();
+            memeText.add(input);
+            }
+
     }
 }
 

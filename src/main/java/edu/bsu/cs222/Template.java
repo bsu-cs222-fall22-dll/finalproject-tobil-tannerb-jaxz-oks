@@ -18,7 +18,7 @@ public class Template {
     public MemeAPIManager memeAPIManager = new MemeAPIManager();
 
     public int getMemeIndex() throws IOException, ParseException {
-        memeAPIManager.getTemplateByName(memeName);
+        memeIndex = memeAPIManager.getTemplateByName(memeName);
         return memeIndex;
     }
 
@@ -29,7 +29,7 @@ public class Template {
     }
 
     public String getUrl() throws IOException, ParseException {
-        memeID = memeAPIManager.getURL(getMemeIndex());
+        url = memeAPIManager.getURL(getMemeIndex());
         return url;
     }
 

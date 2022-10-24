@@ -16,15 +16,6 @@ public class UI {
         System.out.println("Please enter the number of the meme you wish to select: ");
         int index = Integer.parseInt(scanner.nextLine());
         String memeName = memeAPIManager.getName(index - 1);
-        Template template = new Template(memeName);
-        int boxCount = template.getBoxCount();
-        ArrayList<String> memeText = new ArrayList<String>();
-
-        for(int i = 1; i <= boxCount; i++){
-            System.out.println("Please enter the text for text box " + i);
-            String input = scanner.nextLine();
-            memeText.add(input);
-        }
 
         String memeUrl = customizedMeme.customizeMeme(memeName);
 

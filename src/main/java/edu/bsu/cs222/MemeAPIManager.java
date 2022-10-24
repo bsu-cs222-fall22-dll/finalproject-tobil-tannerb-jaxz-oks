@@ -26,12 +26,7 @@ public class MemeAPIManager {
         JSONArray jsonArray = JsonPath.read(jsonString, "$..box_count");
         String boxCount = null;
         for(int i = 0; i < jsonArray.size(); i++){
-            if(i == memeIndex){
-                boxCount = jsonArray.get(i).toString();
-                break;
-            } else {
-                boxCount = "Meme is out of range";
-            }
+            boxCount = jsonArray.get(i).toString();
         }
 
         return boxCount;
@@ -42,12 +37,7 @@ public class MemeAPIManager {
         JSONArray jsonArray = JsonPath.read(jsonString, "$..id");
         String id = null;
         for(int i = 0; i < jsonArray.size(); i++){
-            if(i == memeIndex){
-                id = jsonArray.get(i).toString();
-                break;
-            } else {
-                id = "Meme is out of range";
-            }
+            id = jsonArray.get(i).toString();
          }
 
         return id;
@@ -58,13 +48,7 @@ public class MemeAPIManager {
         JSONArray jsonArray = JsonPath.read(jsonString, "$..url");
         String url = null;
         for (int i = 0; i < jsonArray.size(); i++){
-            if(i == index){
-                url = jsonArray.get(i).toString();
-                break;
-            } else {
-                url = "Meme is out of range";
-            }
-
+            url = jsonArray.get(i).toString();
         }
         return url;
     }

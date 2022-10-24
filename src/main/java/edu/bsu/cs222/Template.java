@@ -35,12 +35,8 @@ public class Template {
 
     public int getBoxCount() throws IOException, ParseException {
         String results = memeAPIManager.getBoxCount(getMemeIndex());
-        if (results.equals("Meme is out of range")){
-            //Need to figure this out
-            results = "Meme is out of range";
-        } else {
-            boxCount = Integer.parseInt(results);
-        }
+        boxCount = Integer.parseInt(results);
+
         return boxCount;
     }
 }

@@ -3,7 +3,7 @@ package edu.bsu.cs222;
 import org.apache.hc.core5.http.ParseException;
 
 import java.io.IOException;
-import java.util.ArrayList;
+
 import java.util.Scanner;
 
 public class UI {

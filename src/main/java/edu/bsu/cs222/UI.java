@@ -26,7 +26,7 @@ public class UI {
             memeText.add(input);
         }
 
-        String memeUrl = customizedMeme.customizeMeme(memeName, memeText);
+        String memeUrl = customizedMeme.customizeMeme(memeName);
 
         System.out.println(memeUrl);
     }

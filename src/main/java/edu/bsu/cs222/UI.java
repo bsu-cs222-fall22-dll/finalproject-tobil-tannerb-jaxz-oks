@@ -10,7 +10,9 @@ public class UI {
     public static void main(String[] args) throws IOException, ParseException {
         Scanner scanner = new Scanner(System.in);
         Customization customizedMeme = new Customization();
+        TemplateFormatter formatter = new TemplateFormatter();
         System.out.println("Please enter the name of the meme you wish to select: \n");
+        formatter.formatTop20();
         String memeName = scanner.nextLine();
         Template template = new Template(memeName);
         int boxCount = template.getBoxCount();

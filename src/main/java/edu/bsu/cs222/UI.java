@@ -9,7 +9,9 @@ import java.util.Scanner;
 public class UI {
     public static void main(String[] args) throws IOException, ParseException {
         TemplateFormatter templateFormatter = new TemplateFormatter();
+        MemeAPIManager memeAPIManager = new MemeAPIManager();
         Scanner scanner = new Scanner(System.in);
+        Customization customizedMeme = new Customization();
         templateFormatter.formatTop20();
         System.out.println("Please enter the number of the meme you wish to select: ");
         int index = Integer.parseInt(scanner.nextLine());

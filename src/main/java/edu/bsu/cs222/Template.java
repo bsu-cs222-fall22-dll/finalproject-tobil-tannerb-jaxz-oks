@@ -27,7 +27,7 @@ public class Template {
         memeID = memeAPIManager.getID(getMemeIndex());
         return memeID;
     }
-
+    @SuppressWarnings("unused")     //Could be used in future iterations.
     public String getUrl() throws IOException, ParseException {
         url = memeAPIManager.getURL(getMemeIndex());
         return url;

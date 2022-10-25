@@ -29,10 +29,7 @@ public class JSONParser {
             String meme = (jsonArray.get(i).toString());
             memeList.add(meme);
         }
-
-
         EntityUtils.consume(entity);
-
         return memeList;
     }
 
@@ -41,12 +38,7 @@ public class JSONParser {
         HttpGet httpGet = new HttpGet("https://api.imgflip.com/get_memes");
 
         CloseableHttpResponse response = (CloseableHttpResponse) httpClient.execute(httpGet);
-
         HttpEntity entity = response.getEntity();
-
-        String jsonString = EntityUtils.toString(entity);
-
-        return jsonString;
-
+        return EntityUtils.toString(entity);
     }
 }

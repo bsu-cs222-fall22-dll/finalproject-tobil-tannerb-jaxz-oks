@@ -13,7 +13,6 @@ public class UI {
         int index = Integer.parseInt(scanner.nextLine());
         if (index > 20 || index <= 0){
             System.out.println("number is not in the range");
-
         }else{
             String memeName = MemeAPIManager.getName(index - 1);
             Customization customizedMeme = new Customization(memeName);

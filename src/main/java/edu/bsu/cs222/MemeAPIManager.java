@@ -7,7 +7,7 @@ import org.apache.hc.core5.http.ParseException;
 import java.io.IOException;
 
 public class MemeAPIManager {
-    private JSONParser jsonParser = new JSONParser();
+    private static JSONParser jsonParser = new JSONParser();
     public int getTemplateByName(String name) throws IOException, ParseException {
         String jsonString = jsonParser.getJSONString();
         JSONArray jsonArray = JsonPath.read(jsonString, "$..name");
@@ -43,6 +43,8 @@ public class MemeAPIManager {
             if (i == memeIndex) {
                 id = jsonArray.get(i).toString();
                 break;
+            } else {
+                id = "Meme is out of range";
             }
          }
 
@@ -62,7 +64,7 @@ public class MemeAPIManager {
         return url;
     }
     //Only used for Template Formatter
-    public String getName(int index)throws IOException, ParseException{
+    public static String getName(int index)throws IOException, ParseException{
         String jsonString = jsonParser.getJSONString();
         JSONArray jsonArray = JsonPath.read(jsonString, "$..name");
         String name = null;

@@ -26,30 +26,17 @@ public class Customization {
     private int memeBoxCount;
     private List<String> memeText = new ArrayList<>();
     private List<NameValuePair> parameters = new ArrayList<>();
-    private Scanner scanner = new Scanner(System.in);
+    private Template template;
 
-    public String customizeMeme(String memeName) throws IOException, ParseException {
-        Template template = new Template(memeName);
-
+    public Customization(String memeName) throws IOException, ParseException {
+        template = new Template(memeName);
         memeID = template.getMemeID();
         memeBoxCount = template.getBoxCount();
-        System.out.println("You will have " + memeBoxCount + " text boxes to fill.");
-        for(int i = 1; i <= memeBoxCount; i++){
-            System.out.println("Please enter the text for text box " + i);
-            String input = scanner.nextLine();
-            memeText.add(input);
-        }
-
-
-
-        setParameters();
-
-        String url = getCustomMemeURL();
-
-        return url;
+        System.out.println(memeName + "   " + memeID);
     }
 
-    private String getCustomMemeURL() throws IOException, ParseException {
+    public String getCustomMemeURL() throws IOException, ParseException {
+        setParameters();
         HttpClient httpClient = HttpClients.createDefault();
         HttpPost httpPost = new HttpPost("https://api.imgflip.com/caption_image");
         httpPost.setEntity(new UrlEncodedFormEntity(parameters));
@@ -77,6 +64,10 @@ public class Customization {
 
     public void addText(String newText){
         memeText.add(newText);
+    }
+
+    public int getMemeBoxCount(){
+        return memeBoxCount;
     }
 
     public void setParameters(){

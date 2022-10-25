@@ -26,7 +26,7 @@ public class Customization {
     private final int memeBoxCount;
     private final List<String> memeText = new ArrayList<>();
     private final List<NameValuePair> parameters = new ArrayList<>();
-    public Customization(String memeName) throws IOException, ParseException {
+    public Customization(String memeName){
         Template template = new Template(memeName);
         memeID = template.getMemeID();
         memeBoxCount = template.getBoxCount();

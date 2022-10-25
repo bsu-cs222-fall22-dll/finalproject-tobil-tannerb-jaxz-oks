@@ -10,7 +10,7 @@ public class TemplateFormatter {
         MemeAPIManager data = new MemeAPIManager();
         for(int i = 0; i < list.size(); i++){
             String order = String.valueOf(i+1);
-            String name = data.getName(i);
+            String name = MemeAPIManager.getName(i);
             String url = data.getURL(i);
             System.out.printf("(%s) Name: %-50s Example: %20s\n", order,name,url);
         }

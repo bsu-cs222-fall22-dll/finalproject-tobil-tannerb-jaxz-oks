@@ -24,13 +24,9 @@ public class Customization {
     private String password = "rZxJQmKsSht7eZk";
     private String memeID = "181913649";
     private int memeBoxCount;
-    private List<String> memeText = new ArrayList<>();
-    private List<NameValuePair> parameters = new ArrayList<>();
     private Template template;
     private final List<String> memeText = new ArrayList<>();
     private final List<NameValuePair> parameters = new ArrayList<>();
-    private final Scanner scanner = new Scanner(System.in);
-
     public Customization(String memeName) throws IOException, ParseException {
         template = new Template(memeName);
         memeID = template.getMemeID();

@@ -11,7 +11,10 @@ import org.apache.hc.core5.http.ParseException;
 import org.apache.hc.core5.http.io.entity.EntityUtils;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class JSONParser {
     public ArrayList<String> getMemeList() throws IOException, ParseException {
@@ -33,6 +36,7 @@ public class JSONParser {
         return memeList;
     }
 
+    @SuppressWarnings("unused") //We will use this in the future when we decide to use live data
     public String getJSONString() throws IOException, ParseException {
         HttpClient httpClient = HttpClients.createDefault();
         HttpGet httpGet = new HttpGet("https://api.imgflip.com/get_memes");
@@ -40,5 +44,12 @@ public class JSONParser {
         CloseableHttpResponse response = (CloseableHttpResponse) httpClient.execute(httpGet);
         HttpEntity entity = response.getEntity();
         return EntityUtils.toString(entity);
+    }
+
+    public String getLocalJSONString() {
+        InputStream jsonInputStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("memes.json");
+        assert jsonInputStream != null;
+        Scanner scanner = new Scanner(jsonInputStream, StandardCharsets.UTF_8);
+        return scanner.useDelimiter("\\A").next();
     }
 }

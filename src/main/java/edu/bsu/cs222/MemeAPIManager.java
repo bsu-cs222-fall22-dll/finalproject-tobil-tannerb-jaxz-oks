@@ -9,7 +9,7 @@ import java.io.IOException;
 public class MemeAPIManager {
     private static JSONParser jsonParser = new JSONParser();
     public int getTemplateByName(String name) throws IOException, ParseException {
-        String jsonString = jsonParser.getJSONString();
+        String jsonString = jsonParser.getLocalJSONString();
         JSONArray jsonArray = JsonPath.read(jsonString, "$..name");
         int memeIndex = 0;
         for(int i = 0; i < jsonArray.size(); i++) {
@@ -22,7 +22,7 @@ public class MemeAPIManager {
     }
 
     public String getBoxCount(int memeIndex) throws IOException, ParseException {
-        String jsonString = jsonParser.getJSONString();
+        String jsonString = jsonParser.getLocalJSONString();
         JSONArray jsonArray = JsonPath.read(jsonString, "$..box_count");
         String boxCount = null;
         for(int i = 0; i < jsonArray.size(); i++){
@@ -36,7 +36,7 @@ public class MemeAPIManager {
 
     }
     public String getID(int memeIndex) throws IOException, ParseException {
-        String jsonString = jsonParser.getJSONString();
+        String jsonString = jsonParser.getLocalJSONString();
         JSONArray jsonArray = JsonPath.read(jsonString, "$..id");
         String id = null;
         for(int i = 0; i < jsonArray.size(); i++){
@@ -52,20 +52,22 @@ public class MemeAPIManager {
 
     }
     public String getURL(int index)throws IOException, ParseException{
-        String jsonString = jsonParser.getJSONString();
+        String jsonString = jsonParser.getLocalJSONString();
         JSONArray jsonArray = JsonPath.read(jsonString, "$..url");
         String url = null;
         for (int i = 0; i < jsonArray.size(); i++){
             if(i == index) {
                 url = jsonArray.get(i).toString();
                 break;
+            } else {
+                url = "Meme is out of range";
             }
         }
         return url;
     }
     //Only used for Template Formatter
     public static String getName(int index)throws IOException, ParseException{
-        String jsonString = jsonParser.getJSONString();
+        String jsonString = jsonParser.getLocalJSONString();
         JSONArray jsonArray = JsonPath.read(jsonString, "$..name");
         String name = null;
         for (int i = 0; i < jsonArray.size(); i++){

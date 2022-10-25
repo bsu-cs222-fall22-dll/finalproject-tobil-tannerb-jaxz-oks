@@ -1,8 +1,5 @@
 package edu.bsu.cs222;
 
-import org.apache.hc.core5.http.ParseException;
-
-import java.io.IOException;
 
 public class Template {
 
@@ -17,22 +14,22 @@ public class Template {
     public int memeIndex;
     public MemeAPIManager memeAPIManager = new MemeAPIManager();
 
-    public int getMemeIndex() throws IOException, ParseException {
+    public int getMemeIndex(){
         memeIndex = memeAPIManager.getTemplateByName(memeName);
         return memeIndex;
     }
 
-    public String getMemeID() throws IOException, ParseException {
+    public String getMemeID(){
         memeID = memeAPIManager.getID(getMemeIndex());
         return memeID;
     }
     @SuppressWarnings("unused")     //Could be used in future iterations.
-    public String getUrl() throws IOException, ParseException {
+    public String getUrl(){
         url = memeAPIManager.getURL(getMemeIndex());
         return url;
     }
 
-    public int getBoxCount() throws IOException, ParseException {
+    public int getBoxCount(){
         String results = memeAPIManager.getBoxCount(getMemeIndex());
         boxCount = Integer.parseInt(results);
 

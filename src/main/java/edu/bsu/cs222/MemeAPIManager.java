@@ -2,8 +2,6 @@ package edu.bsu.cs222;
 
 import com.jayway.jsonpath.JsonPath;
 import net.minidev.json.JSONArray;
-import org.apache.hc.core5.http.ParseException;
-import java.io.IOException;
 
 public class MemeAPIManager {
     private static final JSONParser jsonParser = new JSONParser();

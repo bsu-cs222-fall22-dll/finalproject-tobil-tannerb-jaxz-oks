@@ -39,14 +39,9 @@ public class Customization {
             String input = scanner.nextLine();
             memeText.add(input);
         }
-
-
-
         setParameters();
 
-        String url = getCustomMemeURL();
-
-        return url;
+        return getCustomMemeURL();
     }
 
     private String getCustomMemeURL() throws IOException, ParseException {
@@ -63,14 +58,15 @@ public class Customization {
     private String decodeJSON(HttpEntity encodedJSON) throws IOException, ParseException {
         String jsonString = EntityUtils.toString(encodedJSON);
         HashMap<String, String> jsonMap = JsonPath.read(jsonString, "$.data");
-        String url = jsonMap.get("url");
-        return url;
+        return jsonMap.get("url");
     }
 
+    @SuppressWarnings("unused")     //We plan to use this in future iterations.
     public void setUsername(String user){
         username = user;
     }
 
+    @SuppressWarnings("unused")     //Again, we plan to use this in future iterations.
     public void setPassword(String pass){
         password = pass;
     }
@@ -88,6 +84,7 @@ public class Customization {
         }
     }
 
+    @SuppressWarnings("unused")     //It's a nice method to keep in case we need it in future iterations.
     public List<NameValuePair> getParameters(){
         return parameters;
     }

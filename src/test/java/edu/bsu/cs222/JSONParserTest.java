@@ -10,7 +10,7 @@ public class JSONParserTest {
     @Test
     public void getTop20MemeListTest() throws IOException, ParseException {
         JSONParser jsonParser = new JSONParser();
-        ArrayList jsonArray = jsonParser.getMemeList();
+        ArrayList<String> jsonArray = jsonParser.getMemeList();
         Assertions.assertEquals(20, jsonArray.size());
     }
 }

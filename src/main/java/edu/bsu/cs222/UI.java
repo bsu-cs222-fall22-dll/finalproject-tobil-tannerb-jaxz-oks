@@ -24,7 +24,8 @@ public class UI {
                 System.out.println("Please enter the text for text box " + i);
                 customizedMeme.addText(scanner.nextLine());
             }
-            scanner.close();
             System.out.println(customizedMeme.getCustomMemeURL());
-    }}
+        }
+        scanner.close();
+    }
 }

@@ -6,7 +6,7 @@ import java.io.IOException;
 
 public class CustomizationTest {
     @Test
-    public void customMemeTest1() throws IOException, ParseException {
+    public void customMemeTest() throws IOException, ParseException {
         Customization customization = new Customization("Drake Hot Line Bling");
         customization.addText("making memes with mematic");
         customization.addText("writing your own code to generate custom memes");

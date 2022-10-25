@@ -7,7 +7,7 @@ import org.apache.hc.core5.http.ParseException;
 import java.io.IOException;
 
 public class MemeAPIManager {
-    private JSONParser jsonParser = new JSONParser();
+    private final JSONParser jsonParser = new JSONParser();
     public int getTemplateByName(String name) throws IOException, ParseException {
         String jsonString = jsonParser.getJSONString();
         JSONArray jsonArray = JsonPath.read(jsonString, "$..name");

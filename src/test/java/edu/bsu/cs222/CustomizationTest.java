@@ -13,5 +13,4 @@ public class CustomizationTest {
         String url = customization.getCustomMemeURL();
         System.out.println(url);
     }
-
 }

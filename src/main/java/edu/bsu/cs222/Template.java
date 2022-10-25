@@ -22,7 +22,6 @@ public class Template {
         return memeIndex;
     }
 
-
     public String getMemeID() throws IOException, ParseException {
         memeID = memeAPIManager.getID(getMemeIndex());
         return memeID;

@@ -9,7 +9,6 @@ import java.util.Scanner;
 public class UI {
     public static void main(String[] args) throws IOException, ParseException {
         TemplateFormatter templateFormatter = new TemplateFormatter();
-        MemeAPIManager memeAPIManager = new MemeAPIManager();
         Scanner scanner = new Scanner(System.in);
         templateFormatter.formatTop20();
         System.out.println("Please enter the number of the meme you wish to select: ");
@@ -29,8 +28,6 @@ public class UI {
             }
 
             scanner.close();
-
-//            String memeUrl = customizedMeme.getCustomMemeURL();
 
             System.out.println(customizedMeme.getCustomMemeURL());
     }}

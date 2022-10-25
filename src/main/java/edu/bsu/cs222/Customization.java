@@ -16,19 +16,18 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Scanner;
 
 public class Customization {
 
     private String username = "edu.bsu.cs22.finalproject";
     private String password = "rZxJQmKsSht7eZk";
+    @SuppressWarnings("UnusedAssignment") //This is here in case a memeID somehow does not get set
     private String memeID = "181913649";
-    private int memeBoxCount;
-    private Template template;
+    private final int memeBoxCount;
     private final List<String> memeText = new ArrayList<>();
     private final List<NameValuePair> parameters = new ArrayList<>();
     public Customization(String memeName) throws IOException, ParseException {
-        template = new Template(memeName);
+        Template template = new Template(memeName);
         memeID = template.getMemeID();
         memeBoxCount = template.getBoxCount();
         System.out.println(memeName + "   " + memeID);

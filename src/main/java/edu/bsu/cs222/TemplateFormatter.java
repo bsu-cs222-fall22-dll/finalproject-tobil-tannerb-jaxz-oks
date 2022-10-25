@@ -13,7 +13,7 @@ public class TemplateFormatter {
             String order = String.valueOf(i+1);
             String name = data.getName(i);
             String url = data.getURL(i);
-            System.out.printf("(%s) Name: %s \t Example: %s\n", order,name,url);
+            System.out.printf("(%s) Name: %-50s Example: %20s\n", order,name,url);
         }
     }
 }

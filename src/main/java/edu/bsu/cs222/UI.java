@@ -19,11 +19,9 @@ public class UI {
             System.out.println("number is not in the range");
 
         }else{
-        //scanner.close();
-        String memeName = memeAPIManager.getName(index - 1);
-
-        String memeUrl = customizedMeme.customizeMeme(memeName);
-
-        System.out.println(memeUrl);
-    }}
+            String memeName = memeAPIManager.getName(index - 1);
+            String memeUrl = customizedMeme.customizeMeme(memeName);
+            System.out.println(memeUrl);
+        }
+    }
 }

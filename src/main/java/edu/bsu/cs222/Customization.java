@@ -78,9 +78,8 @@ public class Customization {
         }
     }
 
-    @SuppressWarnings("unused")     //It's a nice method to keep in case we need it in future iterations.
+    @SuppressWarnings("unused")     //It's a nice function to keep in case we need it in future iterations.
     public List<NameValuePair> getParameters(){
         return parameters;
     }
 }
-

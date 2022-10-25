@@ -2,13 +2,10 @@ package edu.bsu.cs222;
 
 import com.jayway.jsonpath.JsonPath;
 import net.minidev.json.JSONArray;
-import org.apache.hc.core5.http.ParseException;
-
-import java.io.IOException;
 
 public class MemeAPIManager {
-    private static JSONParser jsonParser = new JSONParser();
-    public int getTemplateByName(String name) throws IOException, ParseException {
+    private static final JSONParser jsonParser = new JSONParser();
+    public int getTemplateByName(String name){
         String jsonString = jsonParser.getLocalJSONString();
         JSONArray jsonArray = JsonPath.read(jsonString, "$..name");
         int memeIndex = 0;
@@ -21,7 +18,7 @@ public class MemeAPIManager {
         return memeIndex;
     }
 
-    public String getBoxCount(int memeIndex) throws IOException, ParseException {
+    public String getBoxCount(int memeIndex){
         String jsonString = jsonParser.getLocalJSONString();
         JSONArray jsonArray = JsonPath.read(jsonString, "$..box_count");
         String boxCount = null;
@@ -31,11 +28,9 @@ public class MemeAPIManager {
                 break;
             }
         }
-
         return boxCount;
-
     }
-    public String getID(int memeIndex) throws IOException, ParseException {
+    public String getID(int memeIndex){
         String jsonString = jsonParser.getLocalJSONString();
         JSONArray jsonArray = JsonPath.read(jsonString, "$..id");
         String id = null;
@@ -47,11 +42,9 @@ public class MemeAPIManager {
                 id = "Meme is out of range";
             }
          }
-
         return id;
-
     }
-    public String getURL(int index)throws IOException, ParseException{
+    public String getURL(int index){
         String jsonString = jsonParser.getLocalJSONString();
         JSONArray jsonArray = JsonPath.read(jsonString, "$..url");
         String url = null;
@@ -66,7 +59,7 @@ public class MemeAPIManager {
         return url;
     }
     //Only used for Template Formatter
-    public static String getName(int index)throws IOException, ParseException{
+    public static String getName(int index){
         String jsonString = jsonParser.getLocalJSONString();
         JSONArray jsonArray = JsonPath.read(jsonString, "$..name");
         String name = null;
@@ -75,10 +68,7 @@ public class MemeAPIManager {
                 name = jsonArray.get(i).toString();
                 break;
             }
-
         }
         return name;
     }
-
-
 }

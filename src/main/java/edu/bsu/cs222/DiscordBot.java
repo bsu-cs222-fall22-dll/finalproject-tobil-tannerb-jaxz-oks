@@ -10,10 +10,11 @@ import reactor.core.publisher.Mono;
 
 public class DiscordBot {
 
-    static final String token = "MTAzNzE0MTgxODI3NTU0MTEzMw.GXWDIt.qXJn04f2J9VQnd9wbEXTDBm3ia5O6twJ_7ToJM";
+    static final String token1 = "MTAzNzE0MTgxODI3NTU0MTEzMw.GvPcsi.";
+    static final String token2 = "3VK9szYRThoPAk_ev8TFbQP0zGvL-Vd0MywI4U";
 
     public static void main(String[] args){
-        DiscordClient client = DiscordClient.create(token);
+        DiscordClient client = DiscordClient.create(token1 + token2);
 
         Mono<Void> login = client.withGateway((GatewayDiscordClient gateway) -> {
             // ReadyEvent example

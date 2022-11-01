@@ -3,3 +3,6 @@ Application ID:
 
 Public Key:
 f8859f15cca45e2d690f79f0051630ed69fc394aee2824df1779e605fb37c651
+
+Installation Link:
+https://discord.com/api/oauth2/authorize?client_id=1037141818275541133&permissions=380104657920&scope=applications.commands%20bot

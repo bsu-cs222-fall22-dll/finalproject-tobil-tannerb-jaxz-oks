@@ -37,8 +37,21 @@ public class DiscordBot {
                 return Mono.empty();
             }).then();
 
+            Mono<Void> howdy = gateway.on(MessageCreateEvent.class, event -> {
+                Message message = event.getMessage();
+
+                if (message.getContent().equalsIgnoreCase("Hello")) {
+                    return message.getChannel()
+                            .flatMap(channel -> channel.createMessage("Howdy"));
+                }
+
+                return Mono.empty();
+            }).then();
+
             // combine them!
-            return printOnLogin.and(handlePingCommand);
+            return printOnLogin.and(handlePingCommand).and(howdy);
+
+
         });
 
         login.block();

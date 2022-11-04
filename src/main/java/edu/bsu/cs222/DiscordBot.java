@@ -1,59 +1,50 @@
 package edu.bsu.cs222;
 
-import discord4j.core.DiscordClient;
+import discord4j.core.DiscordClientBuilder;
 import discord4j.core.GatewayDiscordClient;
-import discord4j.core.event.domain.lifecycle.ReadyEvent;
-import discord4j.core.event.domain.message.MessageCreateEvent;
-import discord4j.core.object.entity.Message;
-import discord4j.core.object.entity.User;
-import reactor.core.publisher.Mono;
+import discord4j.core.event.domain.interaction.ChatInputInteractionEvent;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.util.ArrayList;
+import java.util.List;
+
+// Much of the Discord code is based on the sample code located at
+// https://github.com/Discord4J/example-projects/tree/master/gradle-simple-bot/src/main/java/com/novamaday/d4j/gradle/simplebot
 
 public class DiscordBot {
+    private static final Logger LOGGER = LoggerFactory.getLogger(DiscordBot.class);
 
     static final String token1 = "MTAzNzE0MTgxODI3NTU0MTEzMw.GvPcsi.";
     static final String token2 = "3VK9szYRThoPAk_ev8TFbQP0zGvL-Vd0MywI4U";
 
     public static void main(String[] args){
-        DiscordClient client = DiscordClient.create(token1 + token2);
+        final GatewayDiscordClient client = DiscordClientBuilder.create(token1 + token2).build()
+                .login()
+                .block();
 
-        Mono<Void> login = client.withGateway((GatewayDiscordClient gateway) -> {
-            // ReadyEvent example
-            Mono<Void> printOnLogin = gateway.on(ReadyEvent.class, event ->
-                            Mono.fromRunnable(() -> {
-                                final User self = event.getSelf();
-                                System.out.printf("Logged in as %s#%s%n", self.getUsername(), self.getDiscriminator());
-                            }))
-                    .then();
+        registerCommands(client);
 
-            // MessageCreateEvent example
-            Mono<Void> handlePingCommand = gateway.on(MessageCreateEvent.class, event -> {
-                Message message = event.getMessage();
+        client.on(ChatInputInteractionEvent.class, DiscordSlashCommandListener::handle)
+                .then(client.onDisconnect())
+                .block();
 
-                if (message.getContent().equalsIgnoreCase("!ping")) {
-                    return message.getChannel()
-                            .flatMap(channel -> channel.createMessage("pong!"));
-                }
-
-                return Mono.empty();
-            }).then();
-
-            Mono<Void> howdy = gateway.on(MessageCreateEvent.class, event -> {
-                Message message = event.getMessage();
-
-                if (message.getContent().equalsIgnoreCase("Hello")) {
-                    return message.getChannel()
-                            .flatMap(channel -> channel.createMessage("Howdy"));
-                }
-
-                return Mono.empty();
-            }).then();
-
-            // combine them!
-            return printOnLogin.and(handlePingCommand).and(howdy);
-
-
-        });
-
-        login.block();
     }
+
+    private static void registerCommands(GatewayDiscordClient client) {
+        final List<String> commandFiles = new ArrayList<>(
+                List.of(
+                        "greet.json",
+                        "ping.json"
+                )
+        );
+
+        DiscordBotCommandRegistrar commandRegistrar = new DiscordBotCommandRegistrar(client.getRestClient());
+        try {
+            commandRegistrar.registerCommands(commandFiles);
+        } catch (Exception e) {
+            LOGGER.error("Error trying to register slash commands", e);
+        }
+    }
+
 }

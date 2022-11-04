@@ -1,0 +1,12 @@
+{
+  "name": "makeMeme",
+  "description": "Makes a custom meme",
+  "options": [
+    {
+      "name": "memeTemplateID",
+      "description": "Template ID for the meme",
+      "type": 3,
+      "required": false
+    }
+  ]
+}

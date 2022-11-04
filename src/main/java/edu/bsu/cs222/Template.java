@@ -1,38 +1,61 @@
 package edu.bsu.cs222;
 
-
 public class Template {
+
+    private String memeName;
+    private String memeID;
+    private String templateURL;
+    private int boxCount;
+    private int memeRank;
+
+    public Template(){}
 
     public Template (String memeName){
         this.memeName = memeName;
     }
 
-    public String memeName;
-    public String memeID;
-    public String url;
-    public int boxCount;
-    public int memeIndex;
-    public MemeAPIManager memeAPIManager = new MemeAPIManager();
+    public void setMemeName(String memeName){
+        this.memeName = memeName;
+    }
 
-    public int getMemeIndex(){
-        memeIndex = memeAPIManager.getTemplateByName(memeName);
-        return memeIndex;
+    public void setMemeID(String memeID){
+        this.memeID = memeID;
+    }
+
+    public void setTemplateURL(String templateURL){
+        this.templateURL = templateURL;
+    }
+
+    public void setBoxCount(int boxCount){
+        this.boxCount = boxCount;
+    }
+
+    public void setMemeRank(int memeRank){
+        this.memeRank = memeRank;
+    }
+
+    public String getMemeName(){
+        return memeName;
+    }
+
+    public int getMemeRank(){
+        return memeRank;
     }
 
     public String getMemeID(){
-        memeID = memeAPIManager.getID(getMemeIndex());
         return memeID;
     }
-    @SuppressWarnings("unused")     //Could be used in future iterations.
+
     public String getUrl(){
-        url = memeAPIManager.getURL(getMemeIndex());
-        return url;
+        return templateURL;
     }
 
     public int getBoxCount(){
-        String results = memeAPIManager.getBoxCount(getMemeIndex());
-        boxCount = Integer.parseInt(results);
-
         return boxCount;
+    }
+
+    @Override
+    public String toString(){
+        return memeID + ", " + memeName + ", " + templateURL;
     }
 }

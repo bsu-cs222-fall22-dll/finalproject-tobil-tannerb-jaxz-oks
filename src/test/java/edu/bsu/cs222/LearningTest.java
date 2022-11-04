@@ -50,7 +50,7 @@ public class LearningTest {
         HttpPost httpPost = new HttpPost("https://api.imgflip.com/caption_image");
 
         List<NameValuePair> parameters = new ArrayList<>();
-        parameters.add(new BasicNameValuePair("template_id", "222516354"));
+        parameters.add(new BasicNameValuePair("template_id", "181913649"));
         parameters.add(new BasicNameValuePair("username", "edu.bsu.cs22.finalproject"));
         parameters.add(new BasicNameValuePair("password", "rZxJQmKsSht7eZk"));
         parameters.add(new BasicNameValuePair("boxes[0][text]", "making memes with mematic"));

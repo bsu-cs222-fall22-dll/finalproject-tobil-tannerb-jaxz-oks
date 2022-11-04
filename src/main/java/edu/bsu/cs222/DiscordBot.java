@@ -35,7 +35,8 @@ public class DiscordBot {
         final List<String> commandFiles = new ArrayList<>(
                 List.of(
                         "greet.json",
-                        "ping.json"
+                        "ping.json",
+                        "customMeme.json"
                 )
         );
 

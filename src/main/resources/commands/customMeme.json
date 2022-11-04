@@ -1,9 +1,9 @@
 {
-  "name": "makeMeme",
+  "name": "makememe",
   "description": "Makes a custom meme",
   "options": [
     {
-      "name": "memeTemplateID",
+      "name": "id",
       "description": "Template ID for the meme",
       "type": 3,
       "required": false

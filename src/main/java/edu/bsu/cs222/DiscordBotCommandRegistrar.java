@@ -45,11 +45,12 @@ public class DiscordBotCommandRegistrar {
             commands.add(request);
         }
 
-//            applicationService.bulkOverwriteGlobalApplicationCommand(applicationID, commands)
-//                    .doOnNext(cmd -> LOGGER.debug("Successfully registered Global command " + cmd.name()))
-//                    .doOnError(e -> LOGGER.error("Failed to register global commands", e))
-//                    .subscribe();
+//        applicationService.bulkOverwriteGlobalApplicationCommand(applicationID, commands)
+//                .doOnNext(cmd -> LOGGER.debug("Successfully registered Global command " + cmd.name()))
+//                .doOnError(e -> LOGGER.error("Failed to register global commands", e))
+//                .subscribe();
 
+        // This is only for testing
         applicationService.bulkOverwriteGuildApplicationCommand(applicationID, guildID, commands)
                 .doOnNext(cmd -> LOGGER.debug("Successfully registered guild command " + cmd.name()))
                 .doOnError(e -> LOGGER.error("Failed to register guild commands", e))

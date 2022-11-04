@@ -13,6 +13,7 @@ public class DiscordSlashCommandListener {
     static {
         commands.add(new DiscordPingCommand());
         commands.add(new DiscordGreetCommand());
+        commands.add(new DiscordMakeMemeCommand());
     }
 
     public static Mono<Void> handle(ChatInputInteractionEvent event) {

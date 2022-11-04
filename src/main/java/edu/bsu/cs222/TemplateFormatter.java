@@ -1,18 +1,14 @@
 package edu.bsu.cs222;
 
-import org.apache.hc.core5.http.ParseException;
-import java.io.IOException;
-import java.util.ArrayList;
+import java.util.List;
 
 public class TemplateFormatter {
-    public String formatTop20() throws IOException, ParseException {
-        ArrayList<String> list = new  JSONParser().getMemeList();
-        MemeAPIManager data = new MemeAPIManager();
+    public static String formatTop20(List<Template> templateList) {
         StringBuilder top20 = new StringBuilder();
-        for(int i = 0; i < list.size(); i++){
-            String order = String.valueOf(i+1);
-            String name = MemeAPIManager.getName(i);
-            String url = data.getURL(i);
+        for(Template template : templateList.subList(0, 20)){
+            int order = template.getMemeRank();
+            String name = template.getMemeName();
+            String url = template.getUrl();
             top20.append(String.format("(%s) Name: %-50s Example: %20s\n", order, name, url));
         }
         return top20.toString();

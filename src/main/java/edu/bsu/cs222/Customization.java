@@ -21,13 +21,13 @@ public class Customization {
 
     private String username = "edu.bsu.cs22.finalproject";
     private String password = "rZxJQmKsSht7eZk";
-    @SuppressWarnings("UnusedAssignment") //This is here in case a memeID somehow does not get set
-    private String memeID = "181913649";
+    private final String memeID;
     private final int memeBoxCount;
     private final List<String> memeText = new ArrayList<>();
     private final List<NameValuePair> parameters = new ArrayList<>();
-    public Customization(String memeName){
-        Template template = new Template(memeName);
+
+    public Customization(Template template){
+        String memeName = template.getMemeName();
         memeID = template.getMemeID();
         memeBoxCount = template.getBoxCount();
         System.out.println(memeName + "   " + memeID);
@@ -63,10 +63,6 @@ public class Customization {
 
     public void addText(String newText){
         memeText.add(newText);
-    }
-
-    public int getMemeBoxCount(){
-        return memeBoxCount;
     }
 
     public void setParameters(){

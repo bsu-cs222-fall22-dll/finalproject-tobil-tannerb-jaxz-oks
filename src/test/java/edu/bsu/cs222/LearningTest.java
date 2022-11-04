@@ -93,4 +93,27 @@ public class LearningTest {
 
         EntityUtils.consume(entity);
     }
+
+    @Test
+    public void templateList(){
+        String jsonString = JSONFetcher.getLocalJSONString();
+
+        JSONArray jsonArray = JsonPath.read(jsonString, "$.data.memes.*");
+
+        List<Template> templateList = new ArrayList<>();
+
+        for (Object memeJson : jsonArray) {
+            @SuppressWarnings("rawtypes") HashMap memeMap = (HashMap) memeJson;
+            Template template = new Template(memeMap.get("name").toString());
+            template.setMemeID(memeMap.get("id").toString());
+            template.setTemplateURL(memeMap.get("url").toString());
+            template.setBoxCount((Integer) memeMap.get("box_count"));
+            templateList.add(template);
+        }
+
+        for (Template template : templateList) {
+            System.out.println(template.toString());
+        }
+
+    }
 }

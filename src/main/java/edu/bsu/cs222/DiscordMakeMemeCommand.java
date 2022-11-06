@@ -17,6 +17,7 @@ public class DiscordMakeMemeCommand implements DiscordSlashCommand{
     @Override
     public Mono<Void> handle(ChatInputInteractionEvent event) {
         return event.reply()
+                .withEphemeral(true)
                 .withComponents(ActionRow.of(memeMenu()));
     }
 
@@ -33,4 +34,5 @@ public class DiscordMakeMemeCommand implements DiscordSlashCommand{
 
         return SelectMenu.of("meme-selection", optionList);
     }
+
 }

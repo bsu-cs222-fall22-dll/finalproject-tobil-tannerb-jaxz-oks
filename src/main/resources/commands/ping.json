@@ -1,12 +1,5 @@
 {
   "name": "ping",
   "description": "Pings the bot",
-  "options": [
-    {
-      "name": "optional_text",
-      "description": "The bot does nothing with this",
-      "type": 3,
-      "required": false
-    }
-  ]
+  "options": []
 }

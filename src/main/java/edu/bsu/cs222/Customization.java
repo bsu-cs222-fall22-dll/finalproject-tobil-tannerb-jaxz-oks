@@ -33,15 +33,22 @@ public class Customization {
         System.out.println(memeName + "   " + memeID);
     }
 
-    public String getCustomMemeURL() throws IOException, ParseException {
+    public String getCustomMemeURL() {
         setParameters();
         HttpClient httpClient = HttpClients.createDefault();
         HttpPost httpPost = new HttpPost("https://api.imgflip.com/caption_image");
         httpPost.setEntity(new UrlEncodedFormEntity(parameters));
-        CloseableHttpResponse response = (CloseableHttpResponse) httpClient.execute(httpPost);
-        HttpEntity entity = response.getEntity();
-        String url = decodeJSON(entity);
-        EntityUtils.consume(entity);
+        CloseableHttpResponse response;
+        String url = "pretend this is the meme URL";
+        try {
+            response = (CloseableHttpResponse) httpClient.execute(httpPost);
+            HttpEntity entity = response.getEntity();
+            url = decodeJSON(entity);
+            EntityUtils.consume(entity);
+        } catch (Exception e) {
+            System.out.println("Something went wrong getting the URL: " + e);
+        }
+
         return url;
     }
 

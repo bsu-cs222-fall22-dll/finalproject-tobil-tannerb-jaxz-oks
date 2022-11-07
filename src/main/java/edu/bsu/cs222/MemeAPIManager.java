@@ -17,4 +17,15 @@ public class MemeAPIManager {
         return memeIndex;
     }
 
+    public static Template getTemplateByID(String memeID) {
+
+        for (Template template : templateList) {
+            if (template.getMemeID().equals(memeID)){
+                return template;
+            }
+        }
+
+        return templateList.get(0);
+    }
+
 }

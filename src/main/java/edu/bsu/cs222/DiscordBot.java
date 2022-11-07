@@ -3,6 +3,8 @@ package edu.bsu.cs222;
 import discord4j.core.DiscordClientBuilder;
 import discord4j.core.GatewayDiscordClient;
 import discord4j.core.event.domain.interaction.ChatInputInteractionEvent;
+import discord4j.core.event.domain.interaction.ModalSubmitInteractionEvent;
+import discord4j.core.event.domain.interaction.SelectMenuInteractionEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -23,9 +25,18 @@ public class DiscordBot {
                 .login()
                 .block();
 
+        assert client != null;
         registerCommands(client);
 
         client.on(ChatInputInteractionEvent.class, DiscordSlashCommandListener::handle)
+                .then(client.onDisconnect())
+                .subscribe();
+
+        client.on(SelectMenuInteractionEvent.class, DiscordMakeMemeCommand::handleSelection)
+                .then(client.onDisconnect())
+                .subscribe();
+
+        client.on(ModalSubmitInteractionEvent.class, DiscordMakeMemeCommand::handleModal)
                 .then(client.onDisconnect())
                 .block();
 

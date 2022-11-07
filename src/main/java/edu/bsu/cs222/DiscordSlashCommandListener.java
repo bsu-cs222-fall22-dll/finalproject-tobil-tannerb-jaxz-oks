@@ -18,6 +18,7 @@ public class DiscordSlashCommandListener {
         commands.add(new DiscordMakeMemeCommand());
     }
 
+    //Listen for slash commands
     public static Mono<Void> handleSlashCommand(ChatInputInteractionEvent event) {
         return Flux.fromIterable(commands)
                 .filter(command -> command.getName().equals(event.getCommandName()))
@@ -25,6 +26,7 @@ public class DiscordSlashCommandListener {
                 .flatMap(command -> command.handle(event));
     }
 
+    //Listen for dropdown menu selections
     public static Mono<Void> handleSelectMenu(SelectMenuInteractionEvent event) {
         if (event.getCustomId().equals("meme-selection")) {
             return DiscordMakeMemeCommand.handleSelection(event);
@@ -33,6 +35,7 @@ public class DiscordSlashCommandListener {
         }
     }
 
+    //Listen for modal submissions
     public static Mono<Void> handleModal(ModalSubmitInteractionEvent event) {
         if (event.getCustomId().equals("text-boxes")) {
             return DiscordMakeMemeCommand.handleModal(event);

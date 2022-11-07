@@ -1,9 +1,9 @@
-package edu.bsu.cs222;
+package edu.bsu.cs222.DiscordBot;
 
 import discord4j.core.event.domain.interaction.ChatInputInteractionEvent;
 import reactor.core.publisher.Mono;
 
-public interface DiscordSlashCommand {
+public interface SlashCommand {
 
     String getName();
 

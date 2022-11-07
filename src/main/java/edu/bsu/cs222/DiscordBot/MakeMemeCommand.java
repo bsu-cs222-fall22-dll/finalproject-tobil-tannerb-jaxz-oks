@@ -1,16 +1,20 @@
-package edu.bsu.cs222;
+package edu.bsu.cs222.DiscordBot;
 
 import discord4j.core.event.domain.interaction.ChatInputInteractionEvent;
 import discord4j.core.event.domain.interaction.ModalSubmitInteractionEvent;
 import discord4j.core.event.domain.interaction.SelectMenuInteractionEvent;
 import discord4j.core.object.component.*;
 import discord4j.core.spec.InteractionPresentModalSpec;
+import edu.bsu.cs222.Customization;
+import edu.bsu.cs222.JSONParser;
+import edu.bsu.cs222.MemeAPIManager;
+import edu.bsu.cs222.Template;
 import reactor.core.publisher.Mono;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class DiscordMakeMemeCommand implements DiscordSlashCommand{
+public class MakeMemeCommand implements SlashCommand {
 
     private static Template template;
     private static Customization customizedMeme;

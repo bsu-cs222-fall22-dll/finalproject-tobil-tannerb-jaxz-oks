@@ -1,11 +1,11 @@
-package edu.bsu.cs222;
+package edu.bsu.cs222.DiscordBot;
 
 import discord4j.core.event.domain.interaction.ChatInputInteractionEvent;
 import discord4j.core.object.command.ApplicationCommandInteractionOption;
 import discord4j.core.object.command.ApplicationCommandInteractionOptionValue;
 import reactor.core.publisher.Mono;
 
-public class DiscordGreetCommand implements DiscordSlashCommand{
+public class GreetCommand implements SlashCommand {
     @Override
     public String getName() {
         return "greet";
@@ -13,7 +13,7 @@ public class DiscordGreetCommand implements DiscordSlashCommand{
 
     @Override
     public Mono<Void> handle(ChatInputInteractionEvent event) {
-        String name = event.getOption("name")
+        @SuppressWarnings("OptionalGetWithoutIsPresent") String name = event.getOption("name")
                 .flatMap(ApplicationCommandInteractionOption::getValue)
                 .map(ApplicationCommandInteractionOptionValue::asString)
                 .get();

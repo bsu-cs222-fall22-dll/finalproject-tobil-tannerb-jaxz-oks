@@ -1,4 +1,4 @@
-package edu.bsu.cs222;
+package edu.bsu.cs222.DiscordBot;
 
 import discord4j.core.event.domain.interaction.ChatInputInteractionEvent;
 import discord4j.core.event.domain.interaction.ModalSubmitInteractionEvent;
@@ -9,13 +9,13 @@ import reactor.core.publisher.Mono;
 import java.util.List;
 import java.util.ArrayList;
 
-public class DiscordSlashCommandListener {
-    private final static List<DiscordSlashCommand> commands = new ArrayList<>();
+public class SlashCommandListener {
+    private final static List<SlashCommand> commands = new ArrayList<>();
 
     static {
-        commands.add(new DiscordPingCommand());
-        commands.add(new DiscordGreetCommand());
-        commands.add(new DiscordMakeMemeCommand());
+        commands.add(new PingCommand());
+        commands.add(new GreetCommand());
+        commands.add(new MakeMemeCommand());
     }
 
     //Listen for slash commands
@@ -29,7 +29,7 @@ public class DiscordSlashCommandListener {
     //Listen for dropdown menu selections
     public static Mono<Void> handleSelectMenu(SelectMenuInteractionEvent event) {
         if (event.getCustomId().equals("meme-selection")) {
-            return DiscordMakeMemeCommand.handleSelection(event);
+            return MakeMemeCommand.handleSelection(event);
         } else {
             return Mono.empty();
         }
@@ -38,7 +38,7 @@ public class DiscordSlashCommandListener {
     //Listen for modal submissions
     public static Mono<Void> handleModal(ModalSubmitInteractionEvent event) {
         if (event.getCustomId().equals("text-boxes")) {
-            return DiscordMakeMemeCommand.handleModal(event);
+            return MakeMemeCommand.handleModal(event);
         } else {
             return Mono.empty();
         }

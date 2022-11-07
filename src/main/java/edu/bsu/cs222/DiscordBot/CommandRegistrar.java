@@ -1,4 +1,4 @@
-package edu.bsu.cs222;
+package edu.bsu.cs222.DiscordBot;
 
 import discord4j.common.JacksonResources;
 import discord4j.discordjson.json.ApplicationCommandRequest;
@@ -17,14 +17,14 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-public class DiscordBotCommandRegistrar {
+public class CommandRegistrar {
     private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
     private final RestClient restClient;
 
     //this directory is inside the "resources" folder
     private static final String commandsDirectory = "commands/";
 
-    public DiscordBotCommandRegistrar(RestClient restClient) {
+    public CommandRegistrar(RestClient restClient) {
         this.restClient = restClient;
     }
 
@@ -58,7 +58,7 @@ public class DiscordBotCommandRegistrar {
     }
 
     private static List<String> getCommandsJson(List<String> fileNames) throws IOException {
-        URL url = DiscordBotCommandRegistrar.class.getClassLoader().getResource(commandsDirectory);
+        URL url = CommandRegistrar.class.getClassLoader().getResource(commandsDirectory);
         Objects.requireNonNull(url, commandsDirectory + " could not be found");
 
         List<String> list = new ArrayList<>();

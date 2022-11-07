@@ -1,4 +1,4 @@
-package edu.bsu.cs222;
+package edu.bsu.cs222.DiscordBot;
 
 import discord4j.core.DiscordClientBuilder;
 import discord4j.core.GatewayDiscordClient;
@@ -28,15 +28,15 @@ public class DiscordBot {
         assert client != null;
         registerCommands(client);
 
-        client.on(ChatInputInteractionEvent.class, DiscordSlashCommandListener::handleSlashCommand)
+        client.on(ChatInputInteractionEvent.class, SlashCommandListener::handleSlashCommand)
                 .then(client.onDisconnect())
                 .subscribe();
 
-        client.on(SelectMenuInteractionEvent.class, DiscordSlashCommandListener::handleSelectMenu)
+        client.on(SelectMenuInteractionEvent.class, SlashCommandListener::handleSelectMenu)
                 .then(client.onDisconnect())
                 .subscribe();
 
-        client.on(ModalSubmitInteractionEvent.class, DiscordSlashCommandListener::handleModal)
+        client.on(ModalSubmitInteractionEvent.class, SlashCommandListener::handleModal)
                 .then(client.onDisconnect())
                 .block();
 
@@ -51,7 +51,7 @@ public class DiscordBot {
                 )
         );
 
-        DiscordBotCommandRegistrar commandRegistrar = new DiscordBotCommandRegistrar(client.getRestClient());
+        CommandRegistrar commandRegistrar = new CommandRegistrar(client.getRestClient());
         try {
             commandRegistrar.registerCommands(commandFiles);
         } catch (Exception e) {

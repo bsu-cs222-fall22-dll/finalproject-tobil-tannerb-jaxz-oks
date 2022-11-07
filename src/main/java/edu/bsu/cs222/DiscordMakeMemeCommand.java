@@ -60,29 +60,21 @@ public class DiscordMakeMemeCommand implements DiscordSlashCommand{
     }
 
     public static Mono<Void> handleSelection(SelectMenuInteractionEvent event) {
-        if (event.getCustomId().equals("meme-selection")) {
-            String templateID = event.getValues().get(0);
-            template = MemeAPIManager.getTemplateByID(templateID);
-            customizedMeme = new Customization(template);
-            return event.presentModal(getText());
-        } else {
-            return Mono.empty();
-        }
+        String templateID = event.getValues().get(0);
+        template = MemeAPIManager.getTemplateByID(templateID);
+        customizedMeme = new Customization(template);
+        return event.presentModal(getText());
     }
 
     public static Mono<Void> handleModal(ModalSubmitInteractionEvent event) {
-        if (event.getCustomId().equals("text-boxes")) {
-            for (TextInput input : event.getComponents(TextInput.class)) {
-                customizedMeme.addText(input.getValue().orElse(""));
-            }
-            try {
-                String url = customizedMeme.getCustomMemeURL();
-                return  event.reply().withContent(url);
-            } catch (Exception e) {
-                System.out.println("Modal Error: " + e);
-                return Mono.empty();
-            }
-        } else {
+        for (TextInput input : event.getComponents(TextInput.class)) {
+            customizedMeme.addText(input.getValue().orElse(""));
+        }
+        try {
+            String url = customizedMeme.getCustomMemeURL();
+            return  event.reply().withContent(url);
+        } catch (Exception e) {
+            System.out.println("Modal Error: " + e);
             return Mono.empty();
         }
     }

@@ -28,15 +28,15 @@ public class DiscordBot {
         assert client != null;
         registerCommands(client);
 
-        client.on(ChatInputInteractionEvent.class, DiscordSlashCommandListener::handle)
+        client.on(ChatInputInteractionEvent.class, DiscordSlashCommandListener::handleSlashCommand)
                 .then(client.onDisconnect())
                 .subscribe();
 
-        client.on(SelectMenuInteractionEvent.class, DiscordMakeMemeCommand::handleSelection)
+        client.on(SelectMenuInteractionEvent.class, DiscordSlashCommandListener::handleSelectMenu)
                 .then(client.onDisconnect())
                 .subscribe();
 
-        client.on(ModalSubmitInteractionEvent.class, DiscordMakeMemeCommand::handleModal)
+        client.on(ModalSubmitInteractionEvent.class, DiscordSlashCommandListener::handleModal)
                 .then(client.onDisconnect())
                 .block();
 

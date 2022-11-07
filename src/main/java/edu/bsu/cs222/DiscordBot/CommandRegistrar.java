@@ -1,6 +1,8 @@
 package edu.bsu.cs222.DiscordBot;
 
 import discord4j.common.JacksonResources;
+import discord4j.core.GatewayDiscordClient;
+import discord4j.discordjson.json.ApplicationCommandData;
 import discord4j.discordjson.json.ApplicationCommandRequest;
 import discord4j.rest.RestClient;
 import discord4j.rest.service.ApplicationService;
@@ -14,6 +16,7 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
@@ -24,6 +27,9 @@ public class CommandRegistrar {
     //this directory is inside the "resources" folder
     private static final String commandsDirectory = "commands/";
 
+    //only use the guildID for testing
+    private static final long guildID = 1030503369867005973L; //this is the Guild ID for the developers' Discord server
+
     public CommandRegistrar(RestClient restClient) {
         this.restClient = restClient;
     }
@@ -33,9 +39,6 @@ public class CommandRegistrar {
 
         final ApplicationService applicationService = restClient.getApplicationService();
         @SuppressWarnings("ConstantConditions") final long applicationID = restClient.getApplicationId().block();
-
-        //only use the guildID for testing
-        final long guildID = 1030503369867005973L; //this is the Guild ID for the developers' Discord server
 
         List<ApplicationCommandRequest> commands = new ArrayList<>();
         for (String json : getCommandsJson(fileNames)) {
@@ -81,5 +84,41 @@ public class CommandRegistrar {
                 return reader.lines().collect(Collectors.joining(System.lineSeparator()));
             }
         }
+    }
+
+    @SuppressWarnings("unused") // This could be useful later
+    public static void deleteGlobalCommand(GatewayDiscordClient client, Long applicationId, String commandName){
+        // Get the commands from discord as a Map
+        Map<String, ApplicationCommandData> discordCommands = client.getRestClient()
+                .getApplicationService()
+                .getGlobalApplicationCommands(applicationId)
+                .collectMap(ApplicationCommandData::name)
+                .block();
+
+        // Get the ID of our command
+        long commandId = Long.parseLong(String.valueOf(Objects.requireNonNull(discordCommands).get(commandName).id()));
+
+        // Delete it
+        client.getRestClient().getApplicationService()
+                .deleteGlobalApplicationCommand(applicationId, commandId)
+                .subscribe();
+    }
+
+    @SuppressWarnings("unused") // This could be useful later
+    public static void deleteGuildCommand(GatewayDiscordClient client, Long applicationId, String commandName) {
+        // Get the commands from discord as a Map
+        Map<String, ApplicationCommandData> discordCommands = client.getRestClient()
+                .getApplicationService()
+                .getGuildApplicationCommands(applicationId, guildID)
+                .collectMap(ApplicationCommandData::name)
+                .block();
+
+        // Get the ID of our command
+        long commandId = Long.parseLong(String.valueOf(Objects.requireNonNull(discordCommands).get(commandName).id()));
+
+        // Delete it
+        client.getRestClient().getApplicationService()
+                .deleteGuildApplicationCommand(applicationId, guildID, commandId)
+                .subscribe();
     }
 }

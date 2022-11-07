@@ -20,6 +20,8 @@ public class DiscordBot {
     static final String token1 = "MTAzNzE0MTgxODI3NTU0MTEzMw.GvPcsi.";
     static final String token2 = "3VK9szYRThoPAk_ev8TFbQP0zGvL-Vd0MywI4U";
 
+    @SuppressWarnings("unused") private static final Long applicationId = 1037141818275541133L;
+
     public static void main(String[] args){
         final GatewayDiscordClient client = DiscordClientBuilder.create(token1 + token2).build()
                 .login()
@@ -45,8 +47,8 @@ public class DiscordBot {
     private static void registerCommands(GatewayDiscordClient client) {
         final List<String> commandFiles = new ArrayList<>(
                 List.of(
-                        "greet.json",
-                        "ping.json",
+//                        "greet.json",
+//                        "ping.json",
                         "customMeme.json"
                 )
         );
@@ -57,6 +59,14 @@ public class DiscordBot {
         } catch (Exception e) {
             LOGGER.error("Error trying to register slash commands", e);
         }
+
+//        The following lines are used to delete commands used for testing.
+
+//        CommandRegistrar.deleteGlobalCommand(client, applicationId, "greet");
+//        CommandRegistrar.deleteGuildCommand(client, applicationId, "greet");
+
+//        CommandRegistrar.deleteGlobalCommand(client, applicationId, "ping");
+//        CommandRegistrar.deleteGuildCommand(client, applicationId, "ping");
     }
 
 }

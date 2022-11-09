@@ -11,6 +11,7 @@ import edu.bsu.cs222.MemeAPIManager;
 import edu.bsu.cs222.Template;
 import reactor.core.publisher.Mono;
 
+import javax.swing.text.html.Option;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,6 +19,7 @@ public class MakeMemeCommand implements SlashCommand {
 
     private static Template template;
     private static Customization customizedMeme;
+    private static MemeAPIManager memeAPIManager;
     @Override
     public String getName() {
         return "makememe";

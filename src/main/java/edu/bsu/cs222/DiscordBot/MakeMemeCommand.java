@@ -46,7 +46,8 @@ public class MakeMemeCommand implements SlashCommand {
             SelectMenu.Option option = SelectMenu.Option.of(template.getMemeName(), template.getMemeID());
             optionList.add(option);
         }
-
+        SelectMenu.Option randomOption = SelectMenu.Option.of("Random", memeAPIManager.getRandomMeme());
+        optionList.add(randomOption);
         return SelectMenu.of("meme-selection", optionList);
     }
 

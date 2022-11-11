@@ -1,8 +1,10 @@
-package edu.bsu.cs222;
+package edu.bsu.cs222.DiscordBot;
 
 import discord4j.core.DiscordClientBuilder;
 import discord4j.core.GatewayDiscordClient;
 import discord4j.core.event.domain.interaction.ChatInputInteractionEvent;
+import discord4j.core.event.domain.interaction.ModalSubmitInteractionEvent;
+import discord4j.core.event.domain.interaction.SelectMenuInteractionEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -18,14 +20,25 @@ public class DiscordBot {
     static final String token1 = "MTAzNzE0MTgxODI3NTU0MTEzMw.GvPcsi.";
     static final String token2 = "3VK9szYRThoPAk_ev8TFbQP0zGvL-Vd0MywI4U";
 
+    @SuppressWarnings("unused") private static final Long applicationId = 1037141818275541133L;
+
     public static void main(String[] args){
         final GatewayDiscordClient client = DiscordClientBuilder.create(token1 + token2).build()
                 .login()
                 .block();
 
+        assert client != null;
         registerCommands(client);
 
-        client.on(ChatInputInteractionEvent.class, DiscordSlashCommandListener::handle)
+        client.on(ChatInputInteractionEvent.class, SlashCommandListener::handleSlashCommand)
+                .then(client.onDisconnect())
+                .subscribe();
+
+        client.on(SelectMenuInteractionEvent.class, SlashCommandListener::handleSelectMenu)
+                .then(client.onDisconnect())
+                .subscribe();
+
+        client.on(ModalSubmitInteractionEvent.class, SlashCommandListener::handleModal)
                 .then(client.onDisconnect())
                 .block();
 
@@ -34,18 +47,26 @@ public class DiscordBot {
     private static void registerCommands(GatewayDiscordClient client) {
         final List<String> commandFiles = new ArrayList<>(
                 List.of(
-                        "greet.json",
-                        "ping.json",
+//                        "greet.json",
+//                        "ping.json",
                         "customMeme.json"
                 )
         );
 
-        DiscordBotCommandRegistrar commandRegistrar = new DiscordBotCommandRegistrar(client.getRestClient());
+        CommandRegistrar commandRegistrar = new CommandRegistrar(client.getRestClient());
         try {
             commandRegistrar.registerCommands(commandFiles);
         } catch (Exception e) {
             LOGGER.error("Error trying to register slash commands", e);
         }
+
+//        The following lines are used to delete commands used for testing.
+
+//        CommandRegistrar.deleteGlobalCommand(client, applicationId, "greet");
+//        CommandRegistrar.deleteGuildCommand(client, applicationId, "greet");
+
+//        CommandRegistrar.deleteGlobalCommand(client, applicationId, "ping");
+//        CommandRegistrar.deleteGuildCommand(client, applicationId, "ping");
     }
 
 }

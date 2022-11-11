@@ -8,6 +8,7 @@ import java.util.Scanner;
 public class UI {
     public static void main(String[] args) throws IOException, ParseException {
         List<Template> templateList = JSONParser.getTemplateList();
+        MemeAPIManager memeAPIManager = new MemeAPIManager();
 
         Scanner scanner = new Scanner(System.in);
 
@@ -15,10 +16,13 @@ public class UI {
         System.out.println("Please enter the number of the meme you wish to select: ");
         int index = Integer.parseInt(scanner.nextLine());
 
-        if (index > 20 || index <= 0){
+        if (index > 21 || index <= 0) {
             System.out.println("number is not in the range");
 
         }else{
+            if (index == 21){
+                index = memeAPIManager.getTemplateByName("Random");
+            }
             Template template = templateList.get(index - 1);
             Customization customizedMeme = new Customization(template);
 

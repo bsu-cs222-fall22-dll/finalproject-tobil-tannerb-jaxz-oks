@@ -30,6 +30,7 @@ public class TemplateTest {
                         (18) Name: Disaster Girl                                      Example: https://i.imgflip.com/23ls.jpg
                         (19) Name: Woman Yelling At Cat                               Example: https://i.imgflip.com/345v97.jpg
                         (20) Name: Sad Pablo Escobar                                  Example: https://i.imgflip.com/1c1uej.jpg
+                        (21) Random
                         """,
                 TemplateFormatter.formatTop20(templateList));
     }

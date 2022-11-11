@@ -1,9 +1,9 @@
-package edu.bsu.cs222;
+package edu.bsu.cs222.DiscordBot;
 
 import discord4j.core.event.domain.interaction.ChatInputInteractionEvent;
 import reactor.core.publisher.Mono;
 
-public class DiscordPingCommand implements DiscordSlashCommand{
+public class PingCommand implements SlashCommand {
     @Override
     public String getName() {
         return "ping";

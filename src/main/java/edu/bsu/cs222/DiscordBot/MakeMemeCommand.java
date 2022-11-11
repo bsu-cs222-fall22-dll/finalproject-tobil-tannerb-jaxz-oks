@@ -10,8 +10,6 @@ import edu.bsu.cs222.JSONParser;
 import edu.bsu.cs222.MemeAPIManager;
 import edu.bsu.cs222.Template;
 import reactor.core.publisher.Mono;
-
-import javax.swing.text.html.Option;
 import java.util.ArrayList;
 import java.util.List;
 

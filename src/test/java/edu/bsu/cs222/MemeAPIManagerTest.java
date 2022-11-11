@@ -3,6 +3,8 @@ package edu.bsu.cs222;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.util.Scanner;
+
 public class MemeAPIManagerTest {
     @Test
     public void nameToIndexTest(){
@@ -17,5 +19,4 @@ public class MemeAPIManagerTest {
         int memeIndex = memeAPIManager.getTemplateByName("One Does Not Simply");
         Assertions.assertEquals(16, memeIndex);
     }
-
 }

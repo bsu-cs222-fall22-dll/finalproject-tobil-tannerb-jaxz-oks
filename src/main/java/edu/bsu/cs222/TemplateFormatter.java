@@ -1,7 +1,6 @@
 package edu.bsu.cs222;
 
 import java.util.List;
-import java.util.Random;
 
 public class TemplateFormatter {
     public static String formatTop20(List<Template> templateList) {

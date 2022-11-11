@@ -1,12 +1,10 @@
 package edu.bsu.cs222;
 
-import org.apache.hc.core5.http.ParseException;
-import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
 
 public class UI {
-    public static void main(String[] args) throws IOException, ParseException {
+    public static void main(String[] args) {
         List<Template> templateList = JSONParser.getTemplateList();
         MemeAPIManager memeAPIManager = new MemeAPIManager();
 

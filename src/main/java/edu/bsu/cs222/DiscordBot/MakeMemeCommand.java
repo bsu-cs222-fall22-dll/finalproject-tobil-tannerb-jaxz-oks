@@ -18,6 +18,7 @@ public class MakeMemeCommand implements SlashCommand {
     private static Template template;
     private static Customization customizedMeme;
     private static MemeAPIManager memeAPIManager;
+
     @Override
     public String getName() {
         return "makememe";
@@ -44,7 +45,7 @@ public class MakeMemeCommand implements SlashCommand {
             SelectMenu.Option option = SelectMenu.Option.of(template.getMemeName(), template.getMemeID());
             optionList.add(option);
         }
-        SelectMenu.Option randomOption = SelectMenu.Option.of("Random", memeAPIManager.getRandomMeme());
+        SelectMenu.Option randomOption = SelectMenu.Option.of("Random", "-1");
         optionList.add(randomOption);
         return SelectMenu.of("meme-selection", optionList);
     }
@@ -66,6 +67,9 @@ public class MakeMemeCommand implements SlashCommand {
 
     public static Mono<Void> handleSelection(SelectMenuInteractionEvent event) {
         String templateID = event.getValues().get(0);
+        if (templateID .equals("-1")) {
+            templateID = memeAPIManager.getRandomMeme();
+        }
         template = MemeAPIManager.getTemplateByID(templateID);
         customizedMeme = new Customization(template);
         return event.presentModal(getText());

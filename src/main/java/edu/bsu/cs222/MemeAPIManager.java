@@ -8,7 +8,7 @@ public class MemeAPIManager {
     private static Random random = new Random();
     public int getTemplateByName(String name){
         int memeIndex = 0;
-        if (name == "Random"){
+        if (name.equals("Random")){
             memeIndex = random.nextInt(20);
             return memeIndex;
         } else {
@@ -38,12 +38,7 @@ public class MemeAPIManager {
     public static String getRandomMeme(){
         Template template = new Template();
         int memeIndex = random.nextInt(20);
-        for(int i = 0; i > 20; i++){
-            if(i == memeIndex){
-                template = templateList.get(i);
-            }
-        }
-
+        template = templateList.get(memeIndex);
         String memeId = template.getMemeID();
         return memeId;
 

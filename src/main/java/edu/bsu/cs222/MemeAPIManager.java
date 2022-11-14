@@ -5,7 +5,7 @@ import java.util.Random;
 
 public class MemeAPIManager {
     private static final List<Template> templateList = JSONParser.getTemplateList();
-    private static Random random = new Random();
+    private static final Random random = new Random();
     public int getTemplateByName(String name){
         int memeIndex = 0;
         if (name.equals("Random")){
@@ -36,11 +36,10 @@ public class MemeAPIManager {
     }
 
     public static String getRandomMeme(){
-        Template template = new Template();
+        Template template;
         int memeIndex = random.nextInt(20);
         template = templateList.get(memeIndex);
-        String memeId = template.getMemeID();
-        return memeId;
+        return template.getMemeID();
 
     }
 

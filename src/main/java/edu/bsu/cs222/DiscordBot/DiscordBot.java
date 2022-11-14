@@ -47,7 +47,7 @@ public class DiscordBot {
     private static void registerCommands(GatewayDiscordClient client) {
         final List<String> commandFiles = new ArrayList<>(
                 List.of(
-//                        "greet.json",
+                        "greet.json",
 //                        "ping.json",
                         "customMeme.json"
                 )

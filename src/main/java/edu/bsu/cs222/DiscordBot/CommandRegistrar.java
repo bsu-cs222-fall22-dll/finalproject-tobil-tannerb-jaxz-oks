@@ -47,7 +47,7 @@ public class CommandRegistrar {
 
             commands.add(request);
         }
-
+            // This is for testing
 //        applicationService.bulkOverwriteGlobalApplicationCommand(applicationID, commands)
 //                .doOnNext(cmd -> LOGGER.debug("Successfully registered Global command " + cmd.name()))
 //                .doOnError(e -> LOGGER.error("Failed to register global commands", e))

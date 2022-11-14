@@ -19,4 +19,11 @@ public class MemeAPIManagerTest {
         int memeIndex = memeAPIManager.getTemplateByName("One Does Not Simply");
         Assertions.assertEquals(16, memeIndex);
     }
+
+    @Test
+    public void getRandomMemeTest(){
+        MemeAPIManager memeAPIManager = new MemeAPIManager();
+        String memeID = memeAPIManager.getRandomMeme();
+        Assertions.assertNotEquals("12345", memeID);
+    }
 }

@@ -3,7 +3,6 @@ package edu.bsu.cs222;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.util.Scanner;
 
 public class MemeAPIManagerTest {
     @Test
@@ -22,8 +21,7 @@ public class MemeAPIManagerTest {
 
     @Test
     public void getRandomMemeTest(){
-        MemeAPIManager memeAPIManager = new MemeAPIManager();
-        String memeID = memeAPIManager.getRandomMeme();
+        String memeID = MemeAPIManager.getRandomMeme();
         Assertions.assertNotEquals("12345", memeID);
     }
 }

@@ -23,14 +23,9 @@ public class UI {
             }
             Template template = templateList.get(index - 1);
             Customization customizedMeme = new Customization(template);
-            Customization memeTemplate = new Customization(template);
+            System.out.println(MemeAPIManager.getMemeNumberTemplate(template));
 
             int memeBoxCount = template.getBoxCount();
-
-            for(int i = 1; i <= memeBoxCount; i++){
-                memeTemplate.addText(String.valueOf(i));
-            }
-            System.out.println(memeTemplate.getCustomMemeURL());
 
             System.out.println("You will have " + memeBoxCount + " text boxes to fill.");
 

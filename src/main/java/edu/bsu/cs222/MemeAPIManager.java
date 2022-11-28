@@ -43,4 +43,12 @@ public class MemeAPIManager {
 
     }
 
+    public static String getMemeNumberTemplate(Template template){
+        Customization custom = new Customization(template);
+        for(int i = 1; i <= template.getBoxCount(); i++){
+            custom.addText(String.valueOf(i));
+        }
+        return (custom.getCustomMemeURL());
+    }
+
 }

@@ -71,7 +71,7 @@ public class MakeMemeCommand implements SlashCommand {
         }
         template = MemeAPIManager.getTemplateByID(templateID);
         customizedMeme = new Customization(template);
-        return event.presentModal(getText());
+        return event.presentModal(getText());  //make showPreview, have showPreviewReturn here
     }
 
     public static Mono<Void> handleModal(ModalSubmitInteractionEvent event) {

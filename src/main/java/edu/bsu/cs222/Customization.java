@@ -19,8 +19,8 @@ import java.util.List;
 
 public class Customization {
 
-    private String username = "edu.bsu.cs22.finalproject";
-    private String password = "rZxJQmKsSht7eZk";
+    private String username = System.getenv("USER");
+    private String password = System.getenv("PASSWORD");
     private final String memeID;
     private final int memeBoxCount;
     private final List<String> memeText = new ArrayList<>();

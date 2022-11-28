@@ -28,7 +28,7 @@ public class CommandRegistrar {
     private static final String commandsDirectory = "commands/";
 
     //only use the guildID for testing
-    private static final long guildID = 1030503369867005973L; //this is the Guild ID for the developers' Discord server
+    private static final long guildID = Long.parseLong(System.getenv("GUILD_ID")); //this is the Guild ID for the developers' Discord server
 
     public CommandRegistrar(RestClient restClient) {
         this.restClient = restClient;
@@ -48,16 +48,16 @@ public class CommandRegistrar {
             commands.add(request);
         }
 
-//        applicationService.bulkOverwriteGlobalApplicationCommand(applicationID, commands)
-//                .doOnNext(cmd -> LOGGER.debug("Successfully registered Global command " + cmd.name()))
-//                .doOnError(e -> LOGGER.error("Failed to register global commands", e))
-//                .subscribe();
+       applicationService.bulkOverwriteGlobalApplicationCommand(applicationID, commands)
+               .doOnNext(cmd -> LOGGER.debug("Successfully registered Global command " + cmd.name()))
+               .doOnError(e -> LOGGER.error("Failed to register global commands", e))
+               .subscribe();
 
         // This is only for testing
-        applicationService.bulkOverwriteGuildApplicationCommand(applicationID, guildID, commands)
-                .doOnNext(cmd -> LOGGER.debug("Successfully registered guild command " + cmd.name()))
-                .doOnError(e -> LOGGER.error("Failed to register guild commands", e))
-                .subscribe();
+//        applicationService.bulkOverwriteGuildApplicationCommand(applicationID, guildID, commands)
+//                .doOnNext(cmd -> LOGGER.debug("Successfully registered guild command " + cmd.name()))
+//                .doOnError(e -> LOGGER.error("Failed to register guild commands", e))
+//                .subscribe();
     }
 
     private static List<String> getCommandsJson(List<String> fileNames) throws IOException {

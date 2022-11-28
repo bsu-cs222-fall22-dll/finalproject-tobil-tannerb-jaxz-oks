@@ -17,13 +17,12 @@ import java.util.List;
 public class DiscordBot {
     private static final Logger LOGGER = LoggerFactory.getLogger(DiscordBot.class);
 
-    static final String token1 = "MTAzNzE0MTgxODI3NTU0MTEzMw.GvPcsi.";
-    static final String token2 = "3VK9szYRThoPAk_ev8TFbQP0zGvL-Vd0MywI4U";
+    static final String token = System.getenv("TOKEN");
 
     @SuppressWarnings("unused") private static final Long applicationId = 1037141818275541133L;
 
     public static void main(String[] args){
-        final GatewayDiscordClient client = DiscordClientBuilder.create(token1 + token2).build()
+        final GatewayDiscordClient client = DiscordClientBuilder.create(token).build()
                 .login()
                 .block();
 
@@ -65,8 +64,8 @@ public class DiscordBot {
 //        CommandRegistrar.deleteGlobalCommand(client, applicationId, "greet");
 //        CommandRegistrar.deleteGuildCommand(client, applicationId, "greet");
 
-//        CommandRegistrar.deleteGlobalCommand(client, applicationId, "ping");
-//        CommandRegistrar.deleteGuildCommand(client, applicationId, "ping");
+  //      CommandRegistrar.deleteGlobalCommand(client, applicationId, "ping");
+    //    CommandRegistrar.deleteGuildCommand(client, applicationId, "ping");
     }
 
 }

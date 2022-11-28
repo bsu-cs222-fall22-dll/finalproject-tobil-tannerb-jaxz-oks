@@ -16,12 +16,12 @@ import java.util.Scanner;
 public class JSONFetcher {
     @SuppressWarnings("unused") //We will use this in the future when we decide to use live data
     public static String getJSONString() throws IOException, ParseException {
-        HttpClient httpClient = HttpClients.createDefault();
-        HttpGet httpGet = new HttpGet("https://api.imgflip.com/get_memes");
+            HttpClient httpClient = HttpClients.createDefault();
+            HttpGet httpGet = new HttpGet("https://api.imgflip.com/get_memes");
 
-        CloseableHttpResponse response = (CloseableHttpResponse) httpClient.execute(httpGet);
-        HttpEntity entity = response.getEntity();
-        return EntityUtils.toString(entity);
+            CloseableHttpResponse response = (CloseableHttpResponse) httpClient.execute(httpGet);
+            HttpEntity entity = response.getEntity();
+            return EntityUtils.toString(entity);
     }
 
     public static String getLocalJSONString() {

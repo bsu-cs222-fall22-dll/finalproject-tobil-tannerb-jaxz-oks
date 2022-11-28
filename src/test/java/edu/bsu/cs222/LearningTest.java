@@ -6,7 +6,6 @@ import org.apache.hc.client5.http.classic.methods.HttpGet;
 import org.apache.hc.client5.http.classic.methods.HttpPost;
 import org.apache.hc.client5.http.entity.UrlEncodedFormEntity;
 import org.apache.hc.client5.http.impl.classic.CloseableHttpResponse;
-import org.apache.hc.client5.http.impl.classic.HttpClients;
 import org.apache.hc.core5.http.*;
 import org.apache.hc.core5.http.io.entity.EntityUtils;
 import org.apache.hc.core5.http.message.BasicNameValuePair;
@@ -16,6 +15,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import static org.apache.hc.client5.http.impl.classic.HttpClients.createDefault;
+
 public class LearningTest {
 
 
@@ -23,7 +24,8 @@ public class LearningTest {
     //and also this Apache quick start guide: https://hc.apache.org/httpcomponents-client-5.1.x/quickstart.html#
     @Test
     public void makeCustomMeme_test() throws IOException, ProtocolException {
-        HttpClient httpClient = HttpClients.createDefault();
+        HttpClient httpClient;
+        httpClient = createDefault();
         HttpPost httpPost = new HttpPost("https://api.imgflip.com/caption_image");
 
         List<NameValuePair> parameters = new ArrayList<>();
@@ -46,7 +48,7 @@ public class LearningTest {
 
     @Test
     public void makeMemeWithBoxes() throws IOException, ParseException {
-        HttpClient httpClient = HttpClients.createDefault();
+        HttpClient httpClient = createDefault();
         HttpPost httpPost = new HttpPost("https://api.imgflip.com/caption_image");
 
         List<NameValuePair> parameters = new ArrayList<>();
@@ -76,7 +78,7 @@ public class LearningTest {
 
     @Test
     public void getMemeTemplateList_test() throws IOException, ParseException {
-        HttpClient httpClient = HttpClients.createDefault();
+        HttpClient httpClient = createDefault();
         HttpGet httpGet = new HttpGet("https://api.imgflip.com/get_memes");
 
         CloseableHttpResponse response = (CloseableHttpResponse) httpClient.execute(httpGet);

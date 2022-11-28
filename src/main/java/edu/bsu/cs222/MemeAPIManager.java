@@ -1,11 +1,24 @@
 package edu.bsu.cs222;
 
+import discord4j.core.spec.InteractionPresentModalSpec;
+
 import java.util.List;
 import java.util.Random;
 
 public class MemeAPIManager {
     private static final List<Template> templateList = JSONParser.getTemplateList();
     private static final Random random = new Random();
+
+    public static String getMemeNumberTemplate(Template template) {
+        Customization custom = new Customization(template);
+        for(int i = 1; i <= template.getBoxCount(); i++){
+            custom.addText(String.valueOf(i));
+        }
+
+        return (custom.getCustomMemeURL());
+    }
+
+
     public int getTemplateByName(String name){
         int memeIndex = 0;
         if (name.equals("Random")){
@@ -43,12 +56,6 @@ public class MemeAPIManager {
 
     }
 
-    public static String getMemeNumberTemplate(Template template){
-        Customization custom = new Customization(template);
-        for(int i = 1; i <= template.getBoxCount(); i++){
-            custom.addText(String.valueOf(i));
-        }
-        return (custom.getCustomMemeURL());
-    }
+
 
 }

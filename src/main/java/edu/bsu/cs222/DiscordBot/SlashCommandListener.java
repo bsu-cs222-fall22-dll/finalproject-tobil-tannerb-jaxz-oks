@@ -16,6 +16,7 @@ public class SlashCommandListener {
         commands.add(new PingCommand());
         commands.add(new GreetCommand());
         commands.add(new MakeMemeCommand());
+        commands.add(new MakeMoreMemeCommand());
     }
 
     //Listen for slash commands
@@ -24,13 +25,22 @@ public class SlashCommandListener {
                 .filter(command -> command.getName().equals(event.getCommandName()))
                 .next()
                 .flatMap(command -> command.handle(event));
+
     }
 
     //Listen for dropdown menu selections
     public static Mono<Void> handleSelectMenu(SelectMenuInteractionEvent event) {
         if (event.getCustomId().equals("meme-selection")) {
             return MakeMemeCommand.handleSelection(event);
-        } else {
+        }else {
+            return Mono.empty();
+        }
+    }
+
+    public static Mono<Void> handleSelectMenuForMoreMemes(SelectMenuInteractionEvent event) {
+        if (event.getCustomId().equals("meme-selection")) {
+            return MakeMoreMemeCommand.handleSelection(event);
+        }else {
             return Mono.empty();
         }
     }
@@ -39,6 +49,14 @@ public class SlashCommandListener {
     public static Mono<Void> handleModal(ModalSubmitInteractionEvent event) {
         if (event.getCustomId().equals("text-boxes")) {
             return MakeMemeCommand.handleModal(event);
+        } else {
+            return Mono.empty();
+        }
+    }
+
+    public static Mono<Void> handleModalForMoreMemes(ModalSubmitInteractionEvent event) {
+        if (event.getCustomId().equals("text-boxes")) {
+            return MakeMoreMemeCommand.handleModal(event);
         } else {
             return Mono.empty();
         }

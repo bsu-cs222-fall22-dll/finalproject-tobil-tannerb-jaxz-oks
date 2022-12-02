@@ -8,15 +8,15 @@ public class UI {
     public static void main(String[] args) {
         List<Template> templateList = JSONParser.getTemplateList();
         MemeAPIManager memeAPIManager = new MemeAPIManager();
-        Template template = templateList.get(0);
+        int index = 101;
 
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Do you want to use the top 20 or search by name? (enter in top20 or search exactly)");
+        System.out.println("(1) Pick form popular meme templates \n(2) Search for meme template");
         String line = scanner.nextLine().toLowerCase(Locale.ROOT);
-        if(line.equals("top20")) {
+        if(line.equals("1")) {
            System.out.println(TemplateFormatter.formatTop20(templateList));
            System.out.println("Please enter the number of the meme you wish to select: ");
-           int index = Integer.parseInt(scanner.nextLine());
+            index = Integer.parseInt(scanner.nextLine());
 
            if (index > 21 || index <= 0) {
                System.out.println("number is not in the range");
@@ -25,25 +25,29 @@ public class UI {
                if (index == 21) {
                    index = memeAPIManager.getTemplateByName("Random");
                }
-               template = templateList.get(index - 1);
            }
        }
-        if(line.equals("search")){
+        if(line.equals("2")){
             TemplateFormatter.formatTop100(templateList);
-            System.out.println("Enter in the name of the meme you want");
+            System.out.println("Enter in the name of the meme you want. (You have to enter in the name exactly or it won't work)");
             String name = scanner.nextLine();
-            for (int i = 1; i < templateList.size(); i++) {
-                Template search  = templateList.get(i);
+            for (int i = 1; i <= templateList.size(); i++) {
+                Template search  = templateList.get(i-1);
                 if (search.getMemeName().equals(name)) {
-                    template = templateList.get(i);
+                    index = i-1;
                     break;
                 }
 
             }
         }
         else {
-            System.out.println("Error in response");
+            System.out.println("Entered wrong number");
         }
+            if (index == 101){
+                System.out.println("no meme was found");
+            }
+            else {
+            Template template = templateList.get(index);
             Customization customizedMeme = new Customization(template);
             System.out.println(MemeAPIManager.getMemeNumberTemplate(template));
 
@@ -58,6 +62,6 @@ public class UI {
             System.out.println(customizedMeme.getCustomMemeURL());
 
         scanner.close();
-    }
+    }}
 }
 

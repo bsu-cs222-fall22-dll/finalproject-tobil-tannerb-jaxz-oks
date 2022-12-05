@@ -71,7 +71,18 @@ public class MakeMemeCommand implements SlashCommand {
         }
         template = MemeAPIManager.getTemplateByID(templateID);
         customizedMeme = new Customization(template);
-        return event.presentModal(getText());  //make showPreview, have showPreviewReturn here
+        return showPreview(event);
+        //return event.presentModal(getText());  //make showPreview, have showPreviewReturn here
+    }
+
+    public static Mono<Void> showPreview (SelectMenuInteractionEvent event) {
+        Button chooseTemplate = Button.primary("choose", "use this template");
+        Button chooseDifferentTemplate = Button.primary("different", "choose different template");
+        return event.reply()
+                .withEphemeral(true)
+                .withContent(MemeAPIManager.getMemeNumberTemplate(template))
+                .withComponents(ActionRow.of(List.of(chooseTemplate, chooseDifferentTemplate)));
+
     }
 
     public static Mono<Void> handleModal(ModalSubmitInteractionEvent event) {

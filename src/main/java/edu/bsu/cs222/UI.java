@@ -34,7 +34,7 @@ public class UI {
             for (int i = 1; i <= templateList.size(); i++) {
                 Template search  = templateList.get(i-1);
                 if (search.getMemeName().equals(name)) {
-                    index = i-1;
+                    index = i;
                     break;
                 }
 
@@ -47,7 +47,7 @@ public class UI {
                 System.out.println("no meme was found");
             }
             else {
-            Template template = templateList.get(index);
+            Template template = templateList.get(index-1);
             Customization customizedMeme = new Customization(template);
             System.out.println(MemeAPIManager.getMemeNumberTemplate(template));
 

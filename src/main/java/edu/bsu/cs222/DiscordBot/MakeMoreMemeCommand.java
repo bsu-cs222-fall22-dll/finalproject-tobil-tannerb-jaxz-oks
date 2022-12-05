@@ -47,7 +47,7 @@ public class MakeMoreMemeCommand implements SlashCommand{
             SelectMenu.Option option = SelectMenu.Option.of(template.getMemeName(), template.getMemeID());
             optionList.add(option);
         }
-        return SelectMenu.of("meme-selection", optionList);
+        return SelectMenu.of("more-meme-selection", optionList);
     }
 
     private static InteractionPresentModalSpec getText(){

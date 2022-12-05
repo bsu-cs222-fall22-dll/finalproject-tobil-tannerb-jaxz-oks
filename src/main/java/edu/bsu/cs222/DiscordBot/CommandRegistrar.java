@@ -55,10 +55,10 @@ public class CommandRegistrar {
                .subscribe();
 
         // This is only for testing
-//        applicationService.bulkOverwriteGuildApplicationCommand(applicationID, guildID, commands)
-//                .doOnNext(cmd -> LOGGER.debug("Successfully registered guild command " + cmd.name()))
-//                .doOnError(e -> LOGGER.error("Failed to register guild commands", e))
-//                .subscribe();
+       applicationService.bulkOverwriteGuildApplicationCommand(applicationID, guildID, commands)
+               .doOnNext(cmd -> LOGGER.debug("Successfully registered guild command " + cmd.name()))
+               .doOnError(e -> LOGGER.error("Failed to register guild commands", e))
+               .subscribe();
     }
 
     private static List<String> getCommandsJson(List<String> fileNames) throws IOException {

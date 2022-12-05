@@ -2,6 +2,7 @@ package edu.bsu.cs222.DiscordBot;
 
 import discord4j.core.DiscordClientBuilder;
 import discord4j.core.GatewayDiscordClient;
+import discord4j.core.event.domain.interaction.ButtonInteractionEvent;
 import discord4j.core.event.domain.interaction.ChatInputInteractionEvent;
 import discord4j.core.event.domain.interaction.ModalSubmitInteractionEvent;
 import discord4j.core.event.domain.interaction.SelectMenuInteractionEvent;
@@ -34,6 +35,10 @@ public class DiscordBot {
                 .then(client.onDisconnect())
                 .subscribe();
 
+        client.on(ButtonInteractionEvent.class, SlashCommandListener::handleButtons)
+                .then(client.onDisconnect())
+                .subscribe();
+
         client.on(SelectMenuInteractionEvent.class, SlashCommandListener::handleSelectMenu)
                 .then(client.onDisconnect())
                 .subscribe();
@@ -41,7 +46,6 @@ public class DiscordBot {
         client.on(SelectMenuInteractionEvent.class, SlashCommandListener::handleSelectMenuForMoreMemes)
                 .then(client.onDisconnect())
                 .subscribe();
-
 
         client.on(ModalSubmitInteractionEvent.class, SlashCommandListener::handleModal)
                 .then(client.onDisconnect())

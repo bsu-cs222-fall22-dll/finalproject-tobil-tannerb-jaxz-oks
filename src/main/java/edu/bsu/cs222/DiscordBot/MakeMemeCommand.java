@@ -1,5 +1,6 @@
 package edu.bsu.cs222.DiscordBot;
 
+import discord4j.core.event.domain.interaction.ButtonInteractionEvent;
 import discord4j.core.event.domain.interaction.ChatInputInteractionEvent;
 import discord4j.core.event.domain.interaction.ModalSubmitInteractionEvent;
 import discord4j.core.event.domain.interaction.SelectMenuInteractionEvent;
@@ -31,12 +32,12 @@ public class MakeMemeCommand implements SlashCommand {
     private Mono<Void> chooseTemplate(ChatInputInteractionEvent event){
         return event.reply()
                 .withEphemeral(true)
-                .withComponents(ActionRow.of(templateMenu()));
+                .withComponents(ActionRow.of(templateMenu(20)));
     }
 
-    private SelectMenu templateMenu(){
+    private SelectMenu templateMenu(int numTemplates){
 
-        List<Template> templateList = JSONParser.getTemplateList().subList(0,20);
+        List<Template> templateList = JSONParser.getTemplateList().subList(0,numTemplates);
 
         List<SelectMenu.Option> optionList = new ArrayList<>();
 
@@ -77,7 +78,7 @@ public class MakeMemeCommand implements SlashCommand {
 
     public static Mono<Void> showPreview (SelectMenuInteractionEvent event) {
         Button chooseTemplate = Button.primary("choose", "use this template");
-        Button chooseDifferentTemplate = Button.primary("different", "choose different template");
+        Button chooseDifferentTemplate = Button.secondary("different", "choose different template");
         return event.reply()
                 .withEphemeral(true)
                 .withContent(MemeAPIManager.getMemeNumberTemplate(template))
@@ -96,5 +97,13 @@ public class MakeMemeCommand implements SlashCommand {
             System.out.println("Modal Error: " + e);
             return Mono.empty();
         }
+    }
+
+    public static Mono<Void> handleChooseButton(ButtonInteractionEvent event) {
+        return event.presentModal(getText());
+    }
+
+    public static Mono<Void> handleDifferentButton(ButtonInteractionEvent event) {
+        return Mono.empty();
     }
 }

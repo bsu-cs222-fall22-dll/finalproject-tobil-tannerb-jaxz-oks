@@ -1,5 +1,6 @@
 package edu.bsu.cs222.DiscordBot;
 
+import discord4j.core.event.domain.interaction.ButtonInteractionEvent;
 import discord4j.core.event.domain.interaction.ChatInputInteractionEvent;
 import discord4j.core.event.domain.interaction.ModalSubmitInteractionEvent;
 import discord4j.core.event.domain.interaction.SelectMenuInteractionEvent;
@@ -57,6 +58,17 @@ public class SlashCommandListener {
     public static Mono<Void> handleModalForMoreMemes(ModalSubmitInteractionEvent event) {
         if (event.getCustomId().equals("text-boxes")) {
             return MakeMoreMemeCommand.handleModal(event);
+        } else {
+            return Mono.empty();
+        }
+    }
+
+    //listen for button clicks
+    public static Mono<Void> handleButtons(ButtonInteractionEvent event) {
+        if (event.getCustomId().equals("choose")) {
+            return MakeMemeCommand.handleChooseButton(event);
+        } else if (event.getCustomId().equals("different")) {
+            return MakeMemeCommand.handleDifferentButton(event);
         } else {
             return Mono.empty();
         }

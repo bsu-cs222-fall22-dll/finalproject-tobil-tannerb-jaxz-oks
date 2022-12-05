@@ -6,6 +6,7 @@ import discord4j.discordjson.json.ApplicationCommandData;
 import discord4j.discordjson.json.ApplicationCommandRequest;
 import discord4j.rest.RestClient;
 import discord4j.rest.service.ApplicationService;
+import edu.bsu.cs222.ReadConfigProperties;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -28,7 +29,7 @@ public class CommandRegistrar {
     private static final String commandsDirectory = "commands/";
 
     //only use the guildID for testing
-    private static final long guildID = Long.parseLong(System.getenv("GUILD_ID")); //this is the Guild ID for the developers' Discord server
+    private static final long guildID = Long.parseLong(ReadConfigProperties.getGuildID());
 
     public CommandRegistrar(RestClient restClient) {
         this.restClient = restClient;
@@ -54,10 +55,10 @@ public class CommandRegistrar {
                .subscribe();
 
         // This is only for testing
-//        applicationService.bulkOverwriteGuildApplicationCommand(applicationID, guildID, commands)
-//                .doOnNext(cmd -> LOGGER.debug("Successfully registered guild command " + cmd.name()))
-//                .doOnError(e -> LOGGER.error("Failed to register guild commands", e))
-//                .subscribe();
+       applicationService.bulkOverwriteGuildApplicationCommand(applicationID, guildID, commands)
+               .doOnNext(cmd -> LOGGER.debug("Successfully registered guild command " + cmd.name()))
+               .doOnError(e -> LOGGER.error("Failed to register guild commands", e))
+               .subscribe();
     }
 
     private static List<String> getCommandsJson(List<String> fileNames) throws IOException {

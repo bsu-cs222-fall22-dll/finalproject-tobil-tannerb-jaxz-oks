@@ -38,7 +38,7 @@ public class SlashCommandListener {
     }
 
     public static Mono<Void> handleSelectMenuForMoreMemes(SelectMenuInteractionEvent event) {
-        if (event.getCustomId().equals("meme-selection")) {
+        if (event.getCustomId().equals("more-meme-selection")) {
             return MakeMoreMemeCommand.handleSelection(event);
         }else {
             return Mono.empty();

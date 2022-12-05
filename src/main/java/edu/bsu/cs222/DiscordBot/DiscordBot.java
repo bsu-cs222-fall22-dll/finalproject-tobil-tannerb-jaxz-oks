@@ -5,6 +5,7 @@ import discord4j.core.GatewayDiscordClient;
 import discord4j.core.event.domain.interaction.ChatInputInteractionEvent;
 import discord4j.core.event.domain.interaction.ModalSubmitInteractionEvent;
 import discord4j.core.event.domain.interaction.SelectMenuInteractionEvent;
+import edu.bsu.cs222.ReadConfigProperties;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -17,7 +18,7 @@ import java.util.List;
 public class DiscordBot {
     private static final Logger LOGGER = LoggerFactory.getLogger(DiscordBot.class);
 
-    static final String token = System.getenv("TOKEN");
+    static final String token = ReadConfigProperties.getBotToken();
 
     @SuppressWarnings("unused") private static final Long applicationId = 1037141818275541133L;
 

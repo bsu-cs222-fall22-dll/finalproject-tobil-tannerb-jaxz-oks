@@ -19,8 +19,8 @@ import java.util.List;
 
 public class Customization {
 
-    private String username = System.getenv("USER");
-    private String password = System.getenv("PASSWORD");
+    private String username = ReadConfigProperties.getImgflipUser();
+    private String password = ReadConfigProperties.getImgflipPassword();
     private final String memeID;
     private final int memeBoxCount;
     private final List<String> memeText = new ArrayList<>();
@@ -39,14 +39,15 @@ public class Customization {
         HttpPost httpPost = new HttpPost("https://api.imgflip.com/caption_image");
         httpPost.setEntity(new UrlEncodedFormEntity(parameters));
         CloseableHttpResponse response;
-        String url = "pretend this is the meme URL";
+        String url = "Something went wrong getting the URL: ";
         try {
             response = (CloseableHttpResponse) httpClient.execute(httpPost);
             HttpEntity entity = response.getEntity();
             url = decodeJSON(entity);
             EntityUtils.consume(entity);
         } catch (Exception e) {
-            System.out.println("Something went wrong getting the URL: " + e);
+            url += e;
+            System.out.println(url);
         }
 
         return url;

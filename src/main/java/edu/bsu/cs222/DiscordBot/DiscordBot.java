@@ -54,8 +54,7 @@ public class DiscordBot {
                 List.of(
                         "greet.json",
 //                        "ping.json",
-                        "customMeme.json",
-                        "moreCustomMemes.json"
+                        "customMeme.json"
                 )
         );
 

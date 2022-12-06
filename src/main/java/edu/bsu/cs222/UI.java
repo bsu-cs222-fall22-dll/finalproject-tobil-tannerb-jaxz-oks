@@ -28,17 +28,12 @@ public class UI {
            }
        }
         if(line.equals("2")){
-            TemplateFormatter.formatTop100(templateList);
-            System.out.println("Enter in the name of the meme you want. (You have to enter in the name exactly or it won't work)");
-            String name = scanner.nextLine();
-            for (int i = 1; i <= templateList.size(); i++) {
-                Template search  = templateList.get(i-1);
-                if (search.getMemeName().equals(name)) {
-                    index = i;
-                    break;
+            System.out.println(TemplateFormatter.formatTop100(templateList));
+            System.out.println("Please enter the number of the meme that you want");
+            index = Integer.parseInt(scanner.nextLine());
+            if (index > 100 || index <= 0){
+                System.out.println("number is not in the range");
                 }
-
-            }
         }
         else {
             System.out.println("Entered wrong number");

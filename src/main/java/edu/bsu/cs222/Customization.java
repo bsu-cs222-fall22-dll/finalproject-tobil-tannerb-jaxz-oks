@@ -19,8 +19,8 @@ import java.util.List;
 
 public class Customization {
 
-    private String username = ReadConfigProperties.getImgflipUser();
-    private String password = ReadConfigProperties.getImgflipPassword();
+    private final String username = ReadConfigProperties.getImgflipUser();
+    private final String password = ReadConfigProperties.getImgflipPassword();
     private final String memeID;
     private final int memeBoxCount;
     private final List<String> memeText = new ArrayList<>();

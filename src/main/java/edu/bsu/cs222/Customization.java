@@ -19,8 +19,8 @@ import java.util.List;
 
 public class Customization {
 
-    private String username = ReadConfigProperties.getImgflipUser();
-    private String password = ReadConfigProperties.getImgflipPassword();
+    private final String username = ReadConfigProperties.getImgflipUser();
+    private final String password = ReadConfigProperties.getImgflipPassword();
     private final String memeID;
     private final int memeBoxCount;
     private final List<String> memeText = new ArrayList<>();
@@ -59,15 +59,7 @@ public class Customization {
         return jsonMap.get("url");
     }
 
-    @SuppressWarnings("unused")     //We plan to use this in future iterations.
-    public void setUsername(String user){
-        username = user;
-    }
 
-    @SuppressWarnings("unused")     //Again, we plan to use this in future iterations.
-    public void setPassword(String pass){
-        password = pass;
-    }
 
     public void addText(String newText){
         memeText.add(newText);
@@ -82,8 +74,4 @@ public class Customization {
         }
     }
 
-    @SuppressWarnings("unused")     //It's a nice function to keep in case we need it in future iterations.
-    public List<NameValuePair> getParameters(){
-        return parameters;
-    }
 }

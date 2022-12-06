@@ -28,7 +28,7 @@ After downloading this code, you have a couple of one time steps that you need t
 Locate your resources folder and update the config.properties to match the following:
 
 GUILD_ID=1030503369867005973 \
-TOKEN= (GET TOKEN FROM PROJECT OWNERS) \
+TOKEN= (GET TOKEN FROM PROJECT OWNERS, THIS IS SENSITIVE INFO) \
 USER=edu.bsu.cs22.finalproject \
 PASSWORD=rZxJQmKsSht7eZk
 

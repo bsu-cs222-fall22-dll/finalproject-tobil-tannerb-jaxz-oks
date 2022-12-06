@@ -67,8 +67,6 @@ public class SlashCommandListener {
     public static Mono<Void> handleButtons(ButtonInteractionEvent event) {
         if (event.getCustomId().equals("choose")) {
             return MakeMemeCommand.handleChooseButton(event);
-        } else if (event.getCustomId().equals("different")) {
-            return MakeMemeCommand.handleDifferentButton(event);
         } else {
             return Mono.empty();
         }

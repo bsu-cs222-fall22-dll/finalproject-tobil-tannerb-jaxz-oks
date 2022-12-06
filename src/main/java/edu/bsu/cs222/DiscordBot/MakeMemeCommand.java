@@ -73,16 +73,15 @@ public class MakeMemeCommand implements SlashCommand {
         template = MemeAPIManager.getTemplateByID(templateID);
         customizedMeme = new Customization(template);
         return showPreview(event);
-        //return event.presentModal(getText());  //make showPreview, have showPreviewReturn here
     }
 
     public static Mono<Void> showPreview (SelectMenuInteractionEvent event) {
-        Button chooseTemplate = Button.primary("choose", "use this template");
-        Button chooseDifferentTemplate = Button.secondary("different", "choose different template");
+        Button chooseTemplateButton = Button.primary("choose", "use this template");
         return event.reply()
                 .withEphemeral(true)
                 .withContent(MemeAPIManager.getMemeNumberTemplate(template))
-                .withComponents(ActionRow.of(List.of(chooseTemplate, chooseDifferentTemplate)));
+                .withComponents(ActionRow.of(chooseTemplateButton));
+//                .withContent("Use the previous select menu to choose a different template.");
 
     }
 
@@ -103,7 +102,9 @@ public class MakeMemeCommand implements SlashCommand {
         return event.presentModal(getText());
     }
 
-    public static Mono<Void> handleDifferentButton(ButtonInteractionEvent event) {
-        return Mono.empty();
-    }
+//    public static Mono<Void> handleDifferentButton(ButtonInteractionEvent event) {
+//        return event.reply()
+//                .withEphemeral(true)
+//                .withContent("Use the previous select menu to choose a different template.");
+//    }
 }

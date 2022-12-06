@@ -18,6 +18,7 @@ public class MakeMemeCommand implements SlashCommand {
 
     private static Template template;
     private static Customization customizedMeme;
+    private int numOfMemes = 20;
 
     @Override
     public String getName() {
@@ -32,12 +33,12 @@ public class MakeMemeCommand implements SlashCommand {
     private Mono<Void> chooseTemplate(ChatInputInteractionEvent event){
         return event.reply()
                 .withEphemeral(true)
-                .withComponents(ActionRow.of(templateMenu(20)));
+                .withComponents(ActionRow.of(templateMenu()));
     }
 
-    private SelectMenu templateMenu(int numTemplates){
+    private SelectMenu templateMenu(){
 
-        List<Template> templateList = JSONParser.getTemplateList().subList(0,numTemplates);
+        List<Template> templateList = JSONParser.getTemplateList().subList(0,numOfMemes);
 
         List<SelectMenu.Option> optionList = new ArrayList<>();
 

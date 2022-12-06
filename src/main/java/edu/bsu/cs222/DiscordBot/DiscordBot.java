@@ -43,15 +43,7 @@ public class DiscordBot {
                 .then(client.onDisconnect())
                 .subscribe();
 
-        client.on(SelectMenuInteractionEvent.class, SlashCommandListener::handleSelectMenuForMoreMemes)
-                .then(client.onDisconnect())
-                .subscribe();
-
         client.on(ModalSubmitInteractionEvent.class, SlashCommandListener::handleModal)
-                .then(client.onDisconnect())
-                .block();
-
-        client.on(ModalSubmitInteractionEvent.class, SlashCommandListener::handleModalForMoreMemes)
                 .then(client.onDisconnect())
                 .block();
 
@@ -62,8 +54,7 @@ public class DiscordBot {
                 List.of(
                         "greet.json",
 //                        "ping.json",
-                        "customMeme.json",
-                        "moreCustomMemes.json"
+                        "customMeme.json"
                 )
         );
 

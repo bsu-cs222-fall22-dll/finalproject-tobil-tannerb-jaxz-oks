@@ -17,7 +17,6 @@ public class SlashCommandListener {
         commands.add(new PingCommand());
         commands.add(new GreetCommand());
         commands.add(new MakeMemeCommand());
-        commands.add(new MakeMoreMemeCommand());
     }
 
     //Listen for slash commands
@@ -38,13 +37,6 @@ public class SlashCommandListener {
         }
     }
 
-    public static Mono<Void> handleSelectMenuForMoreMemes(SelectMenuInteractionEvent event) {
-        if (event.getCustomId().equals("more-meme-selection")) {
-            return MakeMoreMemeCommand.handleSelection(event);
-        }else {
-            return Mono.empty();
-        }
-    }
 
     //Listen for modal submissions
     public static Mono<Void> handleModal(ModalSubmitInteractionEvent event) {
@@ -55,13 +47,6 @@ public class SlashCommandListener {
         }
     }
 
-    public static Mono<Void> handleModalForMoreMemes(ModalSubmitInteractionEvent event) {
-        if (event.getCustomId().equals("text-boxes")) {
-            return MakeMoreMemeCommand.handleModal(event);
-        } else {
-            return Mono.empty();
-        }
-    }
 
     //listen for button clicks
     public static Mono<Void> handleButtons(ButtonInteractionEvent event) {

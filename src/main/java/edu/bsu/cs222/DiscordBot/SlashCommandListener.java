@@ -47,7 +47,6 @@ public class SlashCommandListener {
         }
     }
 
-
     //Listen for modal submissions
     public static Mono<Void> handleModal(ModalSubmitInteractionEvent event) {
         if (event.getCustomId().equals("text-boxes")) {
@@ -57,11 +56,12 @@ public class SlashCommandListener {
         }
     }
 
-
     //listen for button clicks
     public static Mono<Void> handleButtons(ButtonInteractionEvent event) {
         if (event.getCustomId().equals("choose")) {
             return MakeMemeCommand.handleChooseButton(event);
+        } else if (event.getCustomId().equals("showmore")) {
+            return MakeMemeCommand.handleShowMoreOptionsButton(event);
         } else {
             return Mono.empty();
         }

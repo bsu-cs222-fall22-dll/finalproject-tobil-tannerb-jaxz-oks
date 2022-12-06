@@ -25,10 +25,10 @@ Go to this website in order to add the Memelord Largent bot to your Discord serv
 https://discord.com/api/oauth2/authorize?client_id=1037141818275541133&permissions=397284600896&scope=bot%20applications.commands
 
 After downloading this code, you have a couple of one time steps that you need to follow.
-Locate your resources folder and update it to match the following:
+Locate your resources folder and update the config.properties to match the following:
 
 GUILD_ID=1030503369867005973 \
-TOKEN=MTAzNzE0MTgxODI3NTU0MTEzMw.G6AtI7.PITESh9PJ4RepelR5R_A26JvJDBochg1iBNgcI \
+TOKEN= (GET TOKEN FROM PROJECT OWNERS) \
 USER=edu.bsu.cs22.finalproject \
 PASSWORD=rZxJQmKsSht7eZk
 

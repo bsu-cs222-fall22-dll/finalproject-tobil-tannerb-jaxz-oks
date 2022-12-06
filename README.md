@@ -5,12 +5,12 @@
 This program creates a custom meme based on inputs selected by the user.
 
 ### How to Use:
-#### Command Line
+### Command Line
 If you want to make a meme through the command line, open the UI class and run it. You will be asked a 
 series of prompts requesting user input. After all that is complete, the program will return a URL to an ImgFlip 
 website that hosts your own custom meme!
 
-#### Discord Bot
+### Discord Bot
 If this is your first time, please refer to the "First Time" section later in this README, otherwise, proceed as follows
 
 In order to bring the bot online, you will need to go to the DiscordBot class and run it. The bot should now be
@@ -20,7 +20,7 @@ try /makememe and follow the prompts. After, the bot should message the server w
 (NOTE: After the bot is run, three lines of red code appear in the command line. These
 are not errors, it's just telling the info about the API and that the bot is connected to the server.)
 
-#### First Time Directions
+### First Time Directions
 Go to this website in order to add the Memelord Largent bot to your Discord server:
 https://discord.com/api/oauth2/authorize?client_id=1037141818275541133&permissions=397284600896&scope=bot%20applications.commands
 

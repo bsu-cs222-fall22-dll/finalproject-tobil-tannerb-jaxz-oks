@@ -38,14 +38,6 @@ public class SlashCommandListener {
         }
     }
 
-    public static Mono<Void> handleSelectMenuForMoreMemes(SelectMenuInteractionEvent event) {
-        if (event.getCustomId().equals("more-meme-selection")) {
-            return MakeMoreMemeCommand.handleSelection(event);
-        }else {
-            return Mono.empty();
-        }
-    }
-
     //Listen for modal submissions
     public static Mono<Void> handleModal(ModalSubmitInteractionEvent event) {
         if (event.getCustomId().equals("text-boxes")) {
@@ -55,18 +47,20 @@ public class SlashCommandListener {
         }
     }
 
-    public static Mono<Void> handleModalForMoreMemes(ModalSubmitInteractionEvent event) {
-        if (event.getCustomId().equals("text-boxes")) {
-            return MakeMoreMemeCommand.handleModal(event);
-        } else {
-            return Mono.empty();
-        }
-    }
+//    public static Mono<Void> handleModalForMoreMemes(ModalSubmitInteractionEvent event) {
+//        if (event.getCustomId().equals("text-boxes")) {
+//            return MakeMoreMemeCommand.handleModal(event);
+//        } else {
+//            return Mono.empty();
+//        }
+//    }
 
     //listen for button clicks
     public static Mono<Void> handleButtons(ButtonInteractionEvent event) {
         if (event.getCustomId().equals("choose")) {
             return MakeMemeCommand.handleChooseButton(event);
+        } else if (event.getCustomId().equals("showmore")) {
+            return MakeMemeCommand.handleShowMoreOptionsButton(event);
         } else {
             return Mono.empty();
         }

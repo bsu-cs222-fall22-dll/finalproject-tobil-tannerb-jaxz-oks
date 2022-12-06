@@ -18,6 +18,7 @@ public class MakeMemeCommand implements SlashCommand {
 
     private static Template template;
     private static Customization customizedMeme;
+    private static int templateListPage=0;
 
     @Override
     public String getName() {
@@ -29,19 +30,27 @@ public class MakeMemeCommand implements SlashCommand {
         return chooseTemplate(event);
     }
 
-    private Mono<Void> chooseTemplate(ChatInputInteractionEvent event){
+    private static Mono<Void> chooseTemplate(ChatInputInteractionEvent event){
         return event.reply()
                 .withEphemeral(true)
-                .withComponents(ActionRow.of(templateMenu(20)));
+                .withComponents(ActionRow.of(templateMenu()));
     }
 
-    private SelectMenu templateMenu(int numTemplates){
+    private static SelectMenu templateMenu(){
+        List<Template> fullTemplateList = JSONParser.getTemplateList();
+        int sublistMinIndex = templateListPage * 20;
+        int sublistMaxIndex = sublistMinIndex + 20;
 
-        List<Template> templateList = JSONParser.getTemplateList().subList(0,numTemplates);
+        if (sublistMaxIndex >= fullTemplateList.size()) {
+            sublistMaxIndex = fullTemplateList.size();
+            templateListPage = -1;
+        }
+
+        List<Template> shortTemplateList = fullTemplateList.subList(sublistMinIndex,sublistMaxIndex);
 
         List<SelectMenu.Option> optionList = new ArrayList<>();
 
-        for (Template template : templateList) {
+        for (Template template : shortTemplateList) {
             SelectMenu.Option option = SelectMenu.Option.of(template.getMemeName(), template.getMemeID());
             optionList.add(option);
         }
@@ -76,12 +85,12 @@ public class MakeMemeCommand implements SlashCommand {
     }
 
     public static Mono<Void> showPreview (SelectMenuInteractionEvent event) {
-        Button chooseTemplate = Button.primary("choose", "use this template");
-        Button chooseDifferentTemplate = Button.secondary("different", "choose different template");
+        Button chooseTemplate = Button.primary("choose", "Use this template");
+        Button showMoreOptionsButton = Button.secondary("showmore", "Show more templates");
         return event.reply()
                 .withEphemeral(true)
                 .withContent(MemeAPIManager.getMemeNumberTemplate(template))
-                .withComponents(ActionRow.of(List.of(chooseTemplate, chooseDifferentTemplate)));
+                .withComponents(ActionRow.of(chooseTemplate, showMoreOptionsButton));
 
     }
 
@@ -100,5 +109,12 @@ public class MakeMemeCommand implements SlashCommand {
 
     public static Mono<Void> handleChooseButton(ButtonInteractionEvent event) {
         return event.presentModal(getText());
+    }
+
+    public static Mono<Void> handleShowMoreOptionsButton(ButtonInteractionEvent event) {
+        templateListPage += 1;
+        return event.reply()
+                .withEphemeral(true)
+                .withComponents(ActionRow.of(templateMenu()));
     }
 }

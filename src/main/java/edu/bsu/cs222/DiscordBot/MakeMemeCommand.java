@@ -10,7 +10,10 @@ import edu.bsu.cs222.Customization;
 import edu.bsu.cs222.JSONParser;
 import edu.bsu.cs222.MemeAPIManager;
 import edu.bsu.cs222.Template;
+import org.apache.hc.core5.http.ParseException;
 import reactor.core.publisher.Mono;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,7 +40,12 @@ public class MakeMemeCommand implements SlashCommand {
     }
 
     private static SelectMenu templateMenu(){
-        List<Template> fullTemplateList = JSONParser.getTemplateList();
+        List<Template> fullTemplateList;
+        try {
+            fullTemplateList = JSONParser.getTemplateList();
+        } catch (IOException | ParseException e) {
+            throw new RuntimeException(e);
+        }
         int sublistMinIndex = templateListPage * 20;
         int sublistMaxIndex = sublistMinIndex + 20;
 

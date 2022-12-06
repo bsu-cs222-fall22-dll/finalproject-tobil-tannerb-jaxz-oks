@@ -29,9 +29,7 @@ public class SlashCommandListener {
                 .flatMap(command -> {
                     try {
                         return command.handle(event);
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    } catch (ParseException e) {
+                    } catch (IOException | ParseException e) {
                         throw new RuntimeException(e);
                     }
                 });

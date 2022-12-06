@@ -12,9 +12,7 @@ public class MemeAPIManager {
     static {
         try {
             templateList = JSONParser.getTemplateList();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        } catch (ParseException e) {
+        } catch (IOException | ParseException e) {
             throw new RuntimeException(e);
         }
     }

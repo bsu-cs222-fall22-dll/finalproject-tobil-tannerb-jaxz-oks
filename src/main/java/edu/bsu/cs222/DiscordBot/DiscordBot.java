@@ -9,8 +9,10 @@ import discord4j.core.event.domain.interaction.SelectMenuInteractionEvent;
 import edu.bsu.cs222.ReadConfigProperties;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import reactor.core.publisher.Flux;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 // Much of the Discord code is based on the sample code located at
@@ -38,7 +40,6 @@ public class DiscordBot {
         client.on(ButtonInteractionEvent.class, SlashCommandListener::handleButtons)
                 .then(client.onDisconnect())
                 .subscribe();
-
         client.on(SelectMenuInteractionEvent.class, SlashCommandListener::handleSelectMenu)
                 .then(client.onDisconnect())
                 .subscribe();

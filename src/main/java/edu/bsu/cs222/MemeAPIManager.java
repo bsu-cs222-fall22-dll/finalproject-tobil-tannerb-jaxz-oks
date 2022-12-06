@@ -30,7 +30,7 @@ public class MemeAPIManager {
 
 
     public int getTemplateByName(String name){
-        int memeIndex = 0;
+        int memeIndex = -1;
         if (name.equals("Random")){
             memeIndex = random.nextInt(20);
             return memeIndex;

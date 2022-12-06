@@ -8,7 +8,7 @@ public class CustomizationTest {
     //Only checks to make sure that it is an url because the url changes everytime a new custom meme is created
     @Test
     public void customMemeTest() {
-        List<Template> templateList = JSONParser.getTemplateList();
+        List<Template> templateList = JSONParser.getTemplateListForTest();
         Customization customization = new Customization(templateList.get(0));
         customization.addText("making memes with mematic");
         customization.addText("writing your own code to generate custom memes");

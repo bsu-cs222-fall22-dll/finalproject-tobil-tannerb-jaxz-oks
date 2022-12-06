@@ -16,7 +16,7 @@ public class MemeAPIManagerTest {
     public void nameToIndexTestLargerIndex(){
         MemeAPIManager memeAPIManager = new MemeAPIManager();
         int memeIndex = memeAPIManager.getTemplateByName("One Does Not Simply");
-        Assertions.assertEquals(16, memeIndex);
+        Assertions.assertEquals(32, memeIndex);
     }
 
     @Test

@@ -10,7 +10,10 @@ import edu.bsu.cs222.Customization;
 import edu.bsu.cs222.JSONParser;
 import edu.bsu.cs222.MemeAPIManager;
 import edu.bsu.cs222.Template;
+import org.apache.hc.core5.http.ParseException;
 import reactor.core.publisher.Mono;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,17 +29,17 @@ public class MakeMemeCommand implements SlashCommand {
     }
 
     @Override
-    public Mono<Void> handle(ChatInputInteractionEvent event) {
+    public Mono<Void> handle(ChatInputInteractionEvent event) throws IOException, ParseException {
         return chooseTemplate(event);
     }
 
-    private Mono<Void> chooseTemplate(ChatInputInteractionEvent event){
+    private Mono<Void> chooseTemplate(ChatInputInteractionEvent event) throws IOException, ParseException {
         return event.reply()
                 .withEphemeral(true)
                 .withComponents(ActionRow.of(templateMenu()));
     }
 
-    private SelectMenu templateMenu(){
+    private SelectMenu templateMenu() throws IOException, ParseException {
 
         List<Template> templateList = JSONParser.getTemplateList().subList(0,numOfMemes);
 

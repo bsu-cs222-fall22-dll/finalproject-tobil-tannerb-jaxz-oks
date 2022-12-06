@@ -37,6 +37,8 @@ Then, in your "Run" tab at the top of Intellij, select "Edit Configuration." Inp
 GUILD_ID=1030503369867005973;PASSWORD=rZxJQmKsSht7eZk;TOKEN=MTAzNzE0MTgxODI3NTU0MTEzMw.G6AtI7.PITESh9PJ4RepelR5R_A26JvJDBochg1iBNgcI;
 USER=edu.bsu.cs22.finalproject;USERNAME= edu.bsu.cs22.finalproject
 
+(If you have your own IMGFlip account, you can input your username and password instead during the steps above.
+If you do not, you could make an account on their website: https://imgflip.com or feel free to use the credentials provided!)
 
 ### Programmers:
 

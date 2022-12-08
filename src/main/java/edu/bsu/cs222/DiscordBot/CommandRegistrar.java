@@ -23,6 +23,7 @@ import java.util.stream.Collectors;
 
 public class CommandRegistrar {
     private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
+
     private final RestClient restClient;
 
     //this directory is inside the "resources" folder
@@ -54,11 +55,11 @@ public class CommandRegistrar {
                .doOnError(e -> LOGGER.error("Failed to register global commands", e))
                .subscribe();
 
-        // This is only for testing
-       applicationService.bulkOverwriteGuildApplicationCommand(applicationID, guildID, commands)
-               .doOnNext(cmd -> LOGGER.debug("Successfully registered guild command " + cmd.name()))
-               .doOnError(e -> LOGGER.error("Failed to register guild commands", e))
-               .subscribe();
+        // This is only for quickly testing commands
+//       applicationService.bulkOverwriteGuildApplicationCommand(applicationID, guildID, commands)
+//               .doOnNext(cmd -> LOGGER.debug("Successfully registered guild command " + cmd.name()))
+//               .doOnError(e -> LOGGER.error("Failed to register guild commands", e))
+//               .subscribe();
     }
 
     private static List<String> getCommandsJson(List<String> fileNames) throws IOException {
@@ -87,7 +88,6 @@ public class CommandRegistrar {
         }
     }
 
-    @SuppressWarnings("unused") // This could be useful later
     public static void deleteGlobalCommand(GatewayDiscordClient client, Long applicationId, String commandName){
         // Get the commands from discord as a Map
         Map<String, ApplicationCommandData> discordCommands = client.getRestClient()
@@ -105,7 +105,6 @@ public class CommandRegistrar {
                 .subscribe();
     }
 
-    @SuppressWarnings("unused") // This could be useful later
     public static void deleteGuildCommand(GatewayDiscordClient client, Long applicationId, String commandName) {
         // Get the commands from discord as a Map
         Map<String, ApplicationCommandData> discordCommands = client.getRestClient()

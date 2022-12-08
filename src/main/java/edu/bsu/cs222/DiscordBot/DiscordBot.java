@@ -9,10 +9,8 @@ import discord4j.core.event.domain.interaction.SelectMenuInteractionEvent;
 import edu.bsu.cs222.ReadConfigProperties;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-//import reactor.core.publisher.Flux;
 
 import java.util.ArrayList;
-//import java.util.Arrays;
 import java.util.List;
 
 // Much of the Discord code is based on the sample code located at
@@ -53,7 +51,8 @@ public class DiscordBot {
     private static void registerCommands(GatewayDiscordClient client) {
         final List<String> commandFiles = new ArrayList<>(
                 List.of(
-                        "greet.json",
+//                        The following two command file names are only used for testing
+//                        "greet.json",
 //                        "ping.json",
                         "customMeme.json"
                 )
@@ -64,16 +63,20 @@ public class DiscordBot {
             commandRegistrar.registerCommands(commandFiles);
         } catch (Exception e) {
             LOGGER.error("Error trying to register slash commands", e);
-//            System.out.println("Error trying to register slash commands: " + e);
         }
 
 //        The following lines are used to delete commands used for testing.
+        try {
+            CommandRegistrar.deleteGlobalCommand(client, applicationId, "greet");
+            CommandRegistrar.deleteGuildCommand(client, applicationId, "greet");
 
-//        CommandRegistrar.deleteGlobalCommand(client, applicationId, "greet");
-//        CommandRegistrar.deleteGuildCommand(client, applicationId, "greet");
+            CommandRegistrar.deleteGlobalCommand(client, applicationId, "ping");
+            CommandRegistrar.deleteGuildCommand(client, applicationId, "ping");
 
-  //      CommandRegistrar.deleteGlobalCommand(client, applicationId, "ping");
-    //    CommandRegistrar.deleteGuildCommand(client, applicationId, "ping");
+            LOGGER.debug("All test commands successfully deleted");
+        } catch (Exception e) {
+            LOGGER.debug("Unable to delete all test commands. They may not have been registered, in which case this message can be completely ignored. Error code: " + e);
+        }
     }
 
 }

@@ -10,7 +10,10 @@ import edu.bsu.cs222.Customization;
 import edu.bsu.cs222.JSONParser;
 import edu.bsu.cs222.MemeAPIManager;
 import edu.bsu.cs222.Template;
+import org.apache.hc.core5.http.ParseException;
 import reactor.core.publisher.Mono;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,17 +29,17 @@ public class MakeMemeCommand implements SlashCommand {
     }
 
     @Override
-    public Mono<Void> handle(ChatInputInteractionEvent event) {
+    public Mono<Void> handle(ChatInputInteractionEvent event) throws IOException, ParseException {
         return chooseTemplate(event);
     }
 
-    private static Mono<Void> chooseTemplate(ChatInputInteractionEvent event){
+    private static Mono<Void> chooseTemplate(ChatInputInteractionEvent event) throws IOException, ParseException {
         return event.reply()
                 .withEphemeral(true)
                 .withComponents(ActionRow.of(templateMenu()));
     }
 
-    private static SelectMenu templateMenu(){
+    private static SelectMenu templateMenu() throws IOException, ParseException {
         List<Template> fullTemplateList = JSONParser.getTemplateList();
         int sublistMinIndex = templateListPage * 20;
         int sublistMaxIndex = sublistMinIndex + 20;
@@ -113,8 +116,12 @@ public class MakeMemeCommand implements SlashCommand {
 
     public static Mono<Void> handleShowMoreOptionsButton(ButtonInteractionEvent event) {
         templateListPage += 1;
-        return event.reply()
-                .withEphemeral(true)
-                .withComponents(ActionRow.of(templateMenu()));
+        try {
+            return event.reply()
+                    .withEphemeral(true)
+                    .withComponents(ActionRow.of(templateMenu()));
+        } catch (IOException | ParseException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

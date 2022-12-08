@@ -4,9 +4,11 @@ import discord4j.core.event.domain.interaction.ButtonInteractionEvent;
 import discord4j.core.event.domain.interaction.ChatInputInteractionEvent;
 import discord4j.core.event.domain.interaction.ModalSubmitInteractionEvent;
 import discord4j.core.event.domain.interaction.SelectMenuInteractionEvent;
+import org.apache.hc.core5.http.ParseException;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -24,7 +26,13 @@ public class SlashCommandListener {
         return Flux.fromIterable(commands)
                 .filter(command -> command.getName().equals(event.getCommandName()))
                 .next()
-                .flatMap(command -> command.handle(event));
+                .flatMap(command -> {
+                    try {
+                        return command.handle(event);
+                    } catch (IOException | ParseException e) {
+                        throw new RuntimeException(e);
+                    }
+                });
 
     }
 

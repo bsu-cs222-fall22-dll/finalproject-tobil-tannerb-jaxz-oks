@@ -8,15 +8,15 @@ public class MemeAPIManagerTest {
     @Test
     public void nameToIndexTest(){
         MemeAPIManager memeAPIManager = new MemeAPIManager();
-        int memeIndex = memeAPIManager.getTemplateByName("Drake Hotline Bling");
-        Assertions.assertEquals(0, memeIndex);
+        int memeIndex = memeAPIManager.getTemplateByName("Woman Yelling At Cat");
+        Assertions.assertNotEquals(-1, memeIndex);
     }
 
     @Test
     public void nameToIndexTestLargerIndex(){
         MemeAPIManager memeAPIManager = new MemeAPIManager();
         int memeIndex = memeAPIManager.getTemplateByName("One Does Not Simply");
-        Assertions.assertEquals(16, memeIndex);
+        Assertions.assertNotEquals(-1, memeIndex);
     }
 
     @Test

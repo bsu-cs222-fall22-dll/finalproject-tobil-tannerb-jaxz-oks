@@ -1,10 +1,22 @@
 package edu.bsu.cs222;
 
+import org.apache.hc.core5.http.ParseException;
+
+import java.io.IOException;
 import java.util.List;
 import java.util.Random;
 
 public class MemeAPIManager {
-    private static final List<Template> templateList = JSONParser.getTemplateList();
+    private static final List<Template> templateList;
+
+    static {
+        try {
+            templateList = JSONParser.getTemplateList();
+        } catch (IOException | ParseException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     private static final Random random = new Random();
 
     public static String getMemeNumberTemplate(Template template) {
@@ -18,7 +30,7 @@ public class MemeAPIManager {
 
 
     public int getTemplateByName(String name){
-        int memeIndex = 0;
+        int memeIndex = -1;
         if (name.equals("Random")){
             memeIndex = random.nextInt(20);
             return memeIndex;
@@ -34,6 +46,8 @@ public class MemeAPIManager {
 
         return memeIndex;
     }
+
+
 
     public static Template getTemplateByID(String memeID) {
 

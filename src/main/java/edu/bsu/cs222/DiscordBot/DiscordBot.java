@@ -9,10 +9,10 @@ import discord4j.core.event.domain.interaction.SelectMenuInteractionEvent;
 import edu.bsu.cs222.ReadConfigProperties;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import reactor.core.publisher.Flux;
+//import reactor.core.publisher.Flux;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+//import java.util.Arrays;
 import java.util.List;
 
 // Much of the Discord code is based on the sample code located at
@@ -64,6 +64,7 @@ public class DiscordBot {
             commandRegistrar.registerCommands(commandFiles);
         } catch (Exception e) {
             LOGGER.error("Error trying to register slash commands", e);
+//            System.out.println("Error trying to register slash commands: " + e);
         }
 
 //        The following lines are used to delete commands used for testing.

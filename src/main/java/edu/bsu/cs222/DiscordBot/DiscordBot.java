@@ -21,8 +21,6 @@ public class DiscordBot {
 
     static final String token = ReadConfigProperties.getBotToken();
 
-    @SuppressWarnings("unused") private static final Long applicationId = 1037141818275541133L;
-
     public static void main(String[] args){
         final GatewayDiscordClient client = DiscordClientBuilder.create(token).build()
                 .login()
@@ -65,17 +63,38 @@ public class DiscordBot {
             LOGGER.error("Error trying to register slash commands", e);
         }
 
-//        The following lines are used to delete commands used for testing.
-        try {
-            CommandRegistrar.deleteGlobalCommand(client, applicationId, "greet");
-            CommandRegistrar.deleteGuildCommand(client, applicationId, "greet");
+        deleteOldCommands(client);
+    }
 
-            CommandRegistrar.deleteGlobalCommand(client, applicationId, "ping");
-            CommandRegistrar.deleteGuildCommand(client, applicationId, "ping");
+    private static void deleteOldCommands(GatewayDiscordClient client){
 
-            LOGGER.debug("All test commands successfully deleted");
-        } catch (Exception e) {
-            LOGGER.debug("Unable to delete all test commands. They may not have been registered, in which case this message can be completely ignored. Error code: " + e);
+        //There's no way to avoid getting a warning for these method calls in Intellij Idea without either modifying
+        // the API itself or simply suppressing it.
+        @SuppressWarnings("ConstantConditions") long applicationId = client.getRestClient().getApplicationId().block();
+
+        List<String> commandsToDelete = new ArrayList<>(
+                List.of(
+                        "greet",
+                        "ping"
+                )
+        );
+
+        for (String command : commandsToDelete) {
+            try {
+                CommandRegistrar.deleteGlobalCommand(client, applicationId, command);
+                LOGGER.debug("Global command '" + command + "' successfully deleted.");
+            } catch (NullPointerException e) {
+                LOGGER.debug("Unable to delete global command '" + command + "'.\n\tIt may not have been registered globally, in which case this message can be completely ignored.\n\tError code: " + e);
+            }
+        }
+
+        for (String command : commandsToDelete) {
+            try {
+                CommandRegistrar.deleteGuildCommand(client, applicationId, command);
+                LOGGER.debug("Guild command '" + command + "' successfully deleted.");
+            } catch (NullPointerException e) {
+                LOGGER.debug("Unable to delete guild command '" + command + "'.\n\tIt may not have been registered to the guild, in which case this message can be completely ignored.\n\tError code: " + e);
+            }
         }
     }
 

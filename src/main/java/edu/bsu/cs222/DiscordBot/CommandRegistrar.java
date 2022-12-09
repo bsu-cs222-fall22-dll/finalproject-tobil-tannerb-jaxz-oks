@@ -40,7 +40,10 @@ public class CommandRegistrar {
         final JacksonResources d4jMapper = JacksonResources.create();
 
         final ApplicationService applicationService = restClient.getApplicationService();
-        @SuppressWarnings("ConstantConditions") final long applicationID = restClient.getApplicationId().block();
+
+        //There's no way to avoid getting a warning for these method calls in Intellij Idea without either
+        // modifying the API itself or simply suppressing it.
+        @SuppressWarnings("ConstantConditions") long applicationID = restClient.getApplicationId().block();
 
         List<ApplicationCommandRequest> commands = new ArrayList<>();
         for (String json : getCommandsJson(fileNames)) {
@@ -55,7 +58,7 @@ public class CommandRegistrar {
                .doOnError(e -> LOGGER.error("Failed to register global commands", e))
                .subscribe();
 
-        // This is only for quickly testing commands
+        // This is only for testing commands. Global commands can take an hour to show up. Guild commands show up immediately
 //       applicationService.bulkOverwriteGuildApplicationCommand(applicationID, guildID, commands)
 //               .doOnNext(cmd -> LOGGER.debug("Successfully registered guild command " + cmd.name()))
 //               .doOnError(e -> LOGGER.error("Failed to register guild commands", e))
@@ -89,7 +92,7 @@ public class CommandRegistrar {
     }
 
     public static void deleteGlobalCommand(GatewayDiscordClient client, Long applicationId, String commandName){
-        // Get the commands from discord as a Map
+        // Get the GUILD commands from discord as a Map
         Map<String, ApplicationCommandData> discordCommands = client.getRestClient()
                 .getApplicationService()
                 .getGlobalApplicationCommands(applicationId)
@@ -106,7 +109,7 @@ public class CommandRegistrar {
     }
 
     public static void deleteGuildCommand(GatewayDiscordClient client, Long applicationId, String commandName) {
-        // Get the commands from discord as a Map
+        // Get the GUILD commands from discord as a Map
         Map<String, ApplicationCommandData> discordCommands = client.getRestClient()
                 .getApplicationService()
                 .getGuildApplicationCommands(applicationId, guildID)

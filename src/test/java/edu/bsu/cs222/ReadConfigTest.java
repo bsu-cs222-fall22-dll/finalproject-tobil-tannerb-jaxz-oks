@@ -3,6 +3,9 @@ package edu.bsu.cs222;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+    //Unless the variables in your config.properties perfectly match your environment variables, THESE TESTS WILL FAIL!!!
+    // You may need to set individual environment variables for each individual test function in this class.
+
 public class ReadConfigTest {
 
     @Test

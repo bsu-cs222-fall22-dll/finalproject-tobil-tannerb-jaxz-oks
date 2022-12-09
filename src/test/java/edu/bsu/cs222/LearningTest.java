@@ -22,6 +22,9 @@ public class LearningTest {
 
     //This was written referencing this Stack Exchange thread: https://stackoverflow.com/questions/3324717/sending-http-post-request-in-java
     //and also this Apache quick start guide: https://hc.apache.org/httpcomponents-client-5.1.x/quickstart.html#
+
+    //This test does not make (m)any assertions because it was used purely to figure out how to use the API.
+    //For that purpose, printing results instead of asserting that they equal something was much more useful.
     @Test
     public void makeCustomMeme_test() throws IOException, ProtocolException {
         HttpClient httpClient;

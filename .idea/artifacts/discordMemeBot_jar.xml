@@ -1,11 +1,9 @@
 <component name="ArtifactManager">
   <artifact type="jar" name="discordMemeBot:jar">
     <output-path>$PROJECT_DIR$/out/artifacts/discordMemeBot_jar</output-path>
-    <root id="archive" name="finalproject.main.jar">
-      <element id="directory" name="META-INF">
-        <element id="file-copy" path="$PROJECT_DIR$/src/main/resources/META-INF/MANIFEST.MF" />
-      </element>
+    <root id="archive" name="discordMemeBot.jar">
       <element id="module-output" name="finalproject.main" />
+      <element id="dir-copy" path="$PROJECT_DIR$/src/main/resources" />
       <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.httpcomponents.client5/httpclient5/5.1.3/13c984b7b881afcff3a7f0bb95878724a48a4b66/httpclient5-5.1.3.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.netty/netty-codec-dns/4.1.79.Final/6c19c46f9529791964f636c93cfaca0556f0d5d0/netty-codec-dns-4.1.79.Final.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.discord4j/discord4j-rest/3.2.3/9e24130de820cb6720ccd442de1ad03330aa5416/discord4j-rest-3.2.3.jar" path-in-jar="/" />
@@ -57,7 +55,6 @@
       <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.slf4j/slf4j-api/2.0.4/30d5eb5360bd113ce96f9e49e3431993bbf1b247/slf4j-api-2.0.4.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.discord4j/discord4j-voice/3.2.3/cc2395de7065d9302b780b6f3a3882b22be63155/discord4j-voice-3.2.3.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.netty/netty-codec-socks/4.1.79.Final/794a5937cdb1871c4ae350610752dec2929dc1d6/netty-codec-socks-4.1.79.Final.jar" path-in-jar="/" />
-      <element id="dir-copy" path="$PROJECT_DIR$/src/main/resources" />
     </root>
   </artifact>
 </component>

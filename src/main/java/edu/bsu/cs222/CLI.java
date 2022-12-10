@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Scanner;
 
-public class UI {
+public class CLI {
     public static void main(String[] args) throws IOException, ParseException {
         List<Template> templateList = JSONParser.getTemplateList();
         MemeAPIManager memeAPIManager = new MemeAPIManager();

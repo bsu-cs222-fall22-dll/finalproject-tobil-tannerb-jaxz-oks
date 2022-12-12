@@ -18,7 +18,7 @@ After, the bot should send a message with your own custom meme embedded!
 https://discord.com/api/oauth2/authorize?client_id=1037141818275541133&permissions=397284599808&scope=bot
 3. Replace the contents of the config.properties file in the project with the config.properties file from the current release.
 4. Copy the contents of environment_variables.txt from the current release into your environment variables for the run configuration for ReadConfigTest and each of its functions.
-5. It's now safe to run all the tests. If you run the DiscordBot class from the IDE, it will log out the server instance.
+5. It's now safe to run all the tests. If you run the DiscordBot class from the IDE, it will log out the server instance. The server restarts the meme bot every 10 minutes to ensure that it is (almost) always online while testing the bot.
 
 ## Getting Started
 Whether you want to run your own instance of the Discord bot or just want to use the command line interface, there are some basic steps you need to follow to get started.
